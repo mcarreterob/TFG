@@ -1,0 +1,15 @@
+/* 1440x742 */
+/* Viewport is the browser window size. 1vw = 1% of viewport width. If the viewport is 50cm wide, 1vw is 0.5cm. */
+
+body {
+    font-family: 'Ubuntu Mono';
+}
+
+#background-logo {
+  width: 400px;
+  height: 400px;
+  opacity: 0.3;
+  position: relative;
+  left: 40vw;
+  top: 40vw;
+}
