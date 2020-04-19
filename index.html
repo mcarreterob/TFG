@@ -5,31 +5,18 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu Mono' rel='stylesheet'>
-    <style media="screen">
-      #grad1 {
-        height: 5px;
-        width: 100%;
-        background-image: linear-gradient(to right, rgba(255,0,0,0) 10%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 90%);
-        position: absolute;
-        top:9vw;
-      }
-      #grad2 {
-        height: 1px;
-        width: 100%;
-        background-image: linear-gradient(to right, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
-        position: absolute;
-      }
-    </style>
+    <script type="text/javascript" src="data.js"></script>
     <title></title>
   </head>
   <body width="100%">
-    <h1 style="font-size: 5vw;text-align:center;line-height:0;position: absolute;left:36.5vw">ISO 16283-2</h1>
-    <h2 style="font-size: 1.65vw;text-align:center;line-height:0.5;position: absolute;left:37.5vw;top:6vw">Aislamiento a ruido de impactos</h2>
-    <div id="grad2" style="top:8.95vw"></div>
-    <div id="grad1"></div>
-    <div id="grad2" style="top:9.4vw"></div>
-    <img src="Logo_URJC.svg" alt="Logo_URJC.svg" id="background-logo">
-    <i class="fa fa-chevron-left" style="font-size:2vw;color:black;position: absolute;bottom:2vw;left:43.7vw"></i>
-    <i class="fa fa-chevron-right" style="font-size:2vw;color:black;position: absolute;bottom:2vw;left:55vw"></i>
+    <h1>ISO 16283-2: Aislamiento a ruido de impactos</h1>
+    <div class="grad1"></div>
+    <div class="space" style="position: absolute; top: 10vw; right: 18.5vw; width: 61.5vw; height: 33vw">
+      <p id="question" class="question-text">pooooo</p>
+
+    </div>
+    <i id="prev" class="fa fa-chevron-left"></i>
+    <i id="next" class="fa fa-chevron-right"></i>
   </body>
+  <script type="text/javascript" src="app.js"></script>
 </html>

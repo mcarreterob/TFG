@@ -5,11 +5,40 @@ body {
     font-family: 'Ubuntu Mono';
 }
 
-#background-logo {
-  width: 400px;
-  height: 400px;
-  opacity: 0.3;
-  position: relative;
-  left: 40vw;
-  top: 40vw;
+#prev {
+  font-size: 1vw;
+  color: black;
+  position: absolute;
+  bottom: 2vw;
+  left: 43.7vw;
+}
+
+#next {
+  font-size: 1vw;
+  color: black;
+  position: absolute;
+  bottom: 2vw;
+  left: 55vw;
+}
+
+.grad1 {
+  height: 5px;
+  width: 100%;
+  background-image: linear-gradient(to right, rgba(255,0,0,0) 10%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 90%);
+  position: absolute;
+  top: 7vw;
+}
+
+.question-text {
+  font-size: 1.5vw;
+  position: absolute;
+}
+
+h1 {
+  font-size: 3vw;
+  text-align: center;
+  line-height: 0.5;
+  position: absolute;
+  right: 16.5vw;
+  top: 1vw;
 }
