@@ -6,11 +6,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu Mono' rel='stylesheet'>
     <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     <title></title>
   </head>
-  <body width="100%">
+  <body width="100%" onload="init()">
     <h1>ISO 16283-2: Aislamiento a ruido de impactos</h1>
     <div class="grad1"></div>
-    <a href="./app.html" onclick="insertQuestion()"><button type="button" class="myBtn" onclick="insertQuestion()">Empezar</button></a>
+    <div class="space">
+      <p id="question" class="question-text"></p>
+    </div>
+    <i id="prev" class="fa fa-chevron-left"></i>
+    <i id="next" class="fa fa-chevron-right"></i>
   </body>
 </html>
