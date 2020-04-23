@@ -5,7 +5,7 @@ body {
     font-family: 'Ubuntu Mono';
 }
 
-#prev {
+.prev {
   font-size: 1vw;
   color: black;
   position: absolute;
@@ -60,6 +60,7 @@ body {
 .question-text {
   font-size: 1.5vw;
   position: absolute;
+  text-align: center;
 }
 
 h1 {

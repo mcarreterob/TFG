@@ -14,8 +14,14 @@
     <div class="grad1"></div>
     <div class="space">
       <p id="question" class="question-text"></p>
+      <form id="form1" style="position: relative; left: 10vw;top: 8vw; font-size: 1.5vw;">
+        <p><input type="radio" name="selected" value="si">  Verdadero</p>
+        <p><input type="radio" name="selected" value="no">  Falso</p>
+      </form>
+      <input type="button" style="position: relative; top: 10vw" value="obtener el nombre" onclick="capturar()">
+      <div id="resultado" style="position: relative; top: 10vw"></div>
     </div>
-    <i id="prev" class="fa fa-chevron-left"></i>
-    <i id="next" class="fa fa-chevron-right"></i>
+    <button onclick="capturar()"><i id="prev" class="fa fa-chevron-left prev"></i></button>
+    <button onclick="capturar()"><i id="next" class="fa fa-chevron-right"></i></button>
   </body>
 </html>
