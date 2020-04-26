@@ -1,36 +1,58 @@
 console.log(data);
-var index = 1;
+var index = 0;
+var answers = {};
 function init(){
-  document.getElementById("question").innerHTML = index + ". ";
-  document.getElementById("question").innerHTML += data[index].question;
+  insertQuestion(data, index);
+  insertAnswer(index);
 }
 
-function insertAnswer(type) {
-  if (type ==="TRUE_FALSE") {
-
+function insertAnswer(index) {
+  var type = data[index][index + 1].answerType,
+      elementLocation = document.getElementById("dynamicData"),
+      answer;
+  switch (type) {
+    case "TRUE_FALSE":
+      answer = '<p><input type="radio" name="selected" value="Verdadero">  Verdadero</p>'
+                + '<br><p><input type="radio" name="selected" value="Falso">  Falso</p>';
+      elementLocation.insertAdjacentHTML('afterbegin', answer);
+      break;
+    case "OPEN":
+      answer = '<p><input type="text" name="selected" style="font-size:1.2vw;width:2vw"> dB</p>';
+      elementLocation.insertAdjacentHTML('afterbegin', answer);
+      break;
+    default:
+      alert("Ups! Ha habido algún error");
   }
 }
 
 function insertQuestion(data, index) {
-  document.getElementById("question").innerHTML = index + ". ";
-  document.getElementById("question").innerHTML += data[index].question;
-
+  document.getElementById("question").innerHTML = index + 1 + ". ";
+  document.getElementById("question").innerHTML += data[index][index + 1].question;
 }
 
-function capturar()
+function getNext()
     {
-        // obtenemos e valor por el numero de elemento
+      if(index < data.length - 1) {
         var porElementos=document.forms["form1"].elements.selected.value;
         console.log(document.forms["form1"].elements.selected.value);
-        // Obtenemos el valor por el id
-        // var porId=document.getElementById("nombre").value;
-        // // Obtenemos el valor por el Nombre
-        // var porNombre=document.getElementsByName("nombre")[0].value;
-        // // Obtenemos el valor por el tipo de tag
-        // var porTagName=document.getElementsByTagName("input")[0].value;
-        // Obtenemos el valor por el nombre de la clase
-        //var porClassName=document.getElementsByClassName("formulario")[0].value;
+        document.getElementById('dynamicData').innerHTML = '';
+        index ++;
+        insertQuestion(data, index);
+        insertAnswer(index);
+      } else {
+        document.getElementById("next").innerHTML = 'Terminar y salir <i class="fas fa-door-open"></i>';
+      }
+    }
 
-        document.getElementById("resultado").innerHTML=" \
-            Por elementos: "+porElementos;
+function getPrevious()
+    {
+      console.log(index);
+      if(index > 0) {
+        var porElementos=document.forms["form1"].elements.selected.value;
+        console.log(document.forms["form1"].elements.selected.value);
+        document.getElementById('dynamicData').innerHTML = '';
+        index --;
+        insertQuestion(data, index);
+        insertAnswer(index);
+      }
     }
