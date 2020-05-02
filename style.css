@@ -7,7 +7,7 @@ body {
 
 .form1 {
   position: relative;
-  left: 10vw;
+  /* left: 10vw; */
   top: 8vw;
   font-size: 1.5vw;
 }
@@ -16,7 +16,7 @@ body {
   font-family: 'Ubuntu Mono';
   font-size: 1.1vw;
   /* padding: top right bottom left; */
-  padding: 0.1vw 0.5vw 0.1vw 0.4vw;
+  padding: 0.2vw 0.5vw 0.1vw 0.4vw;
   color: black;
   position: absolute;
   bottom: 2vw;
@@ -36,7 +36,7 @@ body {
   font-family: 'Ubuntu Mono';
   font-size: 1.1vw;
   /* padding: top right bottom left; */
-  padding: 0.1vw 0.5vw 0.1vw 0.4vw;
+  padding: 0.2vw 0.5vw 0.1vw 0.4vw;
   color: black;
   position: absolute;
   bottom: 2vw;
@@ -92,7 +92,13 @@ body {
 .question-text {
   font-size: 1.5vw;
   position: absolute;
-  text-align: center;
+}
+
+.answer-text {
+  font-size: 1.3vw;
+  position: absolute;
+  top:0vw;
+  left: 0vw;
 }
 
 h1 {
