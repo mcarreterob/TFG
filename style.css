@@ -8,8 +8,8 @@ body {
 .form1 {
   position: relative;
   /* left: 10vw; */
-  top: 8vw;
-  font-size: 1.5vw;
+  top: 6vw;
+  font-size: 1.4vw;
 }
 
 .prev-button {
@@ -76,8 +76,8 @@ body {
 .space {
   position: absolute;
   top: 10vw;
-  right: 18.5vw;
-  width: 61.5vw;
+  right: 12.5vw;
+  width: 73.5vw;
   height: 33vw;
 }
 
@@ -90,15 +90,16 @@ body {
 }
 
 .question-text {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   position: absolute;
 }
 
 .answer-text {
-  font-size: 1.3vw;
   position: absolute;
-  top:0vw;
-  left: 0vw;
+  font-size: 1.4vw;
+  left: 2vw;
+  overflow-y: auto;
+  height: 26vw;
 }
 
 h1 {
