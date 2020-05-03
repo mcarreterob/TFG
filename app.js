@@ -15,13 +15,13 @@ function insertAnswer(index) {
       value;
   switch (type) {
     case "TRUE_FALSE":
-      answer = '<p><input type="radio" name="selected" value="Verdadero">  Verdadero</p>'
+      answer = '<p style="position:relative;top:1vw"><input type="radio" name="selected" value="Verdadero">  Verdadero</p>'
                 + '<br><p><input type="radio" name="selected" value="Falso">  Falso</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       break;
     case "OPEN":
       units = data[index][index + 1].units;
-      answer = '<p><input type="text" name="selected" style="font-size:1.2vw;width:5vw"> ' + units + '</p>';
+      answer = '<p style="position:relative;top:4vw"><input type="text" name="selected" style="font-size:1.2vw;width:15vw"> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       break;
     case "MULTI":
@@ -36,6 +36,11 @@ function insertAnswer(index) {
       }
       numberAnswers = null;
       possAnswer = null;
+      break;
+    case "OPEN_LONG":
+      units = data[index][index + 1].units;
+      answer = '<p style="position:relative;top:4vw"><input type="text" name="selected" style="font-size:1.2vw;width:30vw"> ' + units + '</p>';
+      elementLocation.insertAdjacentHTML('beforeend', answer);
       break;
     default:
       alert("Ups! Ha habido algún error");

@@ -129,6 +129,17 @@ var data = [
   },
   {
     "10": {
+      "question": "'Las mediciones no deberían iniciarse hasta que el nivel de ruido se haya estabilizado. Si no se obtienen "
+                  + "condiciones estables pasados 5 min, las mediciones deberían realizarse durante un período de medición "
+                  + "bien definido.' ¿En qué caso se debe seguir este procedimiento?<br><br>"
+                  + "Nota: la respuesta son dos palabras.",
+      "answerType": "OPEN",
+      "units": "",
+      "correctAnswer": "dependencia temporal"
+    }
+  },
+  {
+    "11": {
       "question": "Utilizando posiciones fijas de micrófono, el operador puede o no estar presente en el recinto. En caso de estar "
                   + "presente, el tronco del cuerpo del operador debe permanecer a una distancia de al menos 2 metros desde el micrófono.",
       "answerType": "TRUE_FALSE",
@@ -137,6 +148,27 @@ var data = [
           "1": "Falso"
       },
       "correctAnswer": "Falso"
+    }
+  },
+  {
+    "12": {
+      "question": "Según la norma, utilizando micrófono fijo para la máquina de impactos como fuente, se debe realizar el mismo número de "
+                  + "mediciones para cada posición de la máquina de impactos y se debe realizar al menos una medición para "
+                  + "cada posición de la máquina de impactos.",
+      "answerType": "TRUE_FALSE",
+      "possibleAnswers": {
+          "0": "Verdadero",
+          "1": "Falso"
+      },
+      "correctAnswer": "Falso"
+    }
+  },
+  {
+    "13": {
+      "question": "¿Cuáles son las trayectorias de barrido manual de micrófono?",
+      "answerType": "OPEN_LONG",
+      "units": "",
+      "correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
     }
   }
   ];

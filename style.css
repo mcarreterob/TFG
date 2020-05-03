@@ -91,15 +91,17 @@ body {
 
 .question-text {
   font-size: 1.4vw;
+  line-height: 1.2;
   position: absolute;
 }
 
 .answer-text {
   position: absolute;
   font-size: 1.4vw;
+  line-height: 1.2;
   left: 2vw;
   overflow-y: auto;
-  height: 26vw;
+  height: 29vw;
 }
 
 h1 {
