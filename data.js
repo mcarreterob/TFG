@@ -165,10 +165,40 @@ var data = [
   },
   {
     "13": {
-      "question": "¿Cuáles son las trayectorias de barrido manual de micrófono?",
+      "question": "Identifique, separadas por comas, las trayectorias de barrido manual de micrófono de la figura.<br><br>"
+                  + "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='333' height='359'>",
       "answerType": "OPEN_LONG",
       "units": "",
       "correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
+    }
+  },
+  {
+    "14": {
+      "question": "El procedimiento de baja frecuencia se debe utilizar para bandas de 1/3 octava de 50 Hz, 63 Hz, 80 Hz y 125 Hz "
+                  + "en el recinto receptor cuando su volumen es inferior a 25 metros cúbicos.",
+      "answerType": "TRUE_FALSE",
+      "possibleAnswers": {
+          "0": "Verdadero",
+          "1": "Falso"
+      },
+      "correctAnswer": "Falso"
+    }
+  },
+  {
+    "15": {
+      "question": "<img style='float:right;position:relative;top:1vw' src='img/posicion-micro.png' alt='trayectorias' width='243' height='198'>"
+                  + "La figura muestra un ejemplo de posición de micrófono de esquina para el procedimiento de baja frecuencia. "
+                  + "d-1 = 1,5 metros; d-2 = 1,35 metros. "
+                  + "¿Está colocado correctamente el micrófono?",
+      "answerType": "MULTI",
+      "numberAnswers": 4,
+      "possibleAnswers": {
+          "0": "Sí.",
+          "1": "La distancia d-1 es demasiado grande, la distancia d-2 es correcta.",
+          "2": "Ambas distancias son demasiado grandes, deben cumplir d < 0,3 m.",
+          "3": "Ninguna de las respuestas anteriores son correctas."
+      },
+      "correctAnswer": "Ninguna de las respuestas anteriores son correctas."
     }
   }
   ];
