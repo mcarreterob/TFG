@@ -200,5 +200,28 @@ var data = [
       },
       "correctAnswer": "Ninguna de las respuestas anteriores son correctas."
     }
+  },
+  {
+    "16": {
+      "question": "¿Cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
+                  + "o de mano para cada posición de la fuente de impactos?<br>"
+                  + "Nota: escriba el valor numérico, p.e.: 2 (no escriba 'dos').",
+      "answerType": "OPEN",
+      "units": "",
+      "correctAnswer": "4"
+    }
+  },
+  {
+    "17": {
+      "question": "Para el procedimiento de baja frecuencia, ¿es necesario medir el ruido de fondo en cada esquina utilizada "
+                  + "para calcular los niveles de presión acústica de la esquina?",
+      "answerType": "MULTI",
+      "numberAnswers": 2,
+      "possibleAnswers": {
+          "0": "Sí.",
+          "1": "No."
+      },
+      "correctAnswer": "Sí."
+    }
   }
   ];
