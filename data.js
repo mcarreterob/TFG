@@ -3,7 +3,7 @@ var data = [
     "1": {
       "question": "La máquina de impactos se puede utilizar para una variedad de impactos leves o fuertes,"
                   + " mientras que la pelota de caucho para impactos pesados y suaves",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"

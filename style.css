@@ -21,9 +21,8 @@ body {
   position: absolute;
   bottom: 2vw;
   left: 45.7vw;
-  border-radius: 5px;
+  border-radius: 0.2vw;
   background-color: white;
-  transition-duration: 0.4s;
 }
 
 .prev-button:hover {
@@ -41,8 +40,11 @@ body {
   position: absolute;
   bottom: 2vw;
   left: 53vw;
-  border-radius: 5px;
+  border-radius: 0.2vw;
   background-color: white;
+}
+
+.transition-button {
   transition-duration: 0.4s;
 }
 
@@ -61,10 +63,9 @@ body {
    cursor: pointer;
    width: 10vw;
    height: 3vw;
-   border: 2px solid #f44336;
+   border: 0.15vw solid #f44336;
    background-color: white;
-   border-radius: 5px;
-   transition-duration: 0.4s;
+   border-radius: 0.2vw;
  }
 
  .myBtn:hover {
@@ -73,22 +74,61 @@ body {
    color: white
  }
 
+
+.answer_btn {
+  font-family: 'Ubuntu Mono';
+  position: relative;
+  top: 4vw;
+  font-size: 1.3vw;
+  cursor: pointer;
+  left: 20vw;
+  width: 10vw;
+  height: 5vw;
+  border: 0.15vw solid #bbbbbb;
+  background-color: white;
+  border-radius: 0.2vw;
+
+}
+
+#btn2 {
+  left: 28vw;
+}
+
+.answer_btn:hover {
+  border: 0.15vw solid #000000;
+  cursor: pointer;
+}
+
+.btn_clicked {
+  background-color: #bbbbbb;
+}
+
 .space {
   position: absolute;
-  top: 10vw;
+  top: 20vh;
   right: 12.5vw;
   width: 73.5vw;
-  height: 33vw;
+  height: 30vw;
 }
 
 .grad1 {
-  height: 5px;
+  height: 0.3vw;
   width: 100%;
   background-image: linear-gradient(to right, rgba(255,0,0,0) 10%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 90%);
   position: absolute;
   top: 7vw;
 }
 
+.progress-menu-container {
+  position: relative;
+  top: 20vh;
+  left: 2vw;
+  width: 5vw;
+  height: 5vh;
+  border-radius: 0.2vw;
+  background-color: #bbbbbb;
+
+}
 .question-text {
   font-size: 1.4vw;
   line-height: 1.2;
@@ -97,11 +137,11 @@ body {
 
 .answer-text {
   position: absolute;
-  font-size: 1.4vw;
-  line-height: 1.2;
+  font-size: 1.1vw;
   left: 2vw;
   overflow-y: auto;
-  height: 29vw;
+  height: 18vw;
+  width: 100%;
 }
 
 h1 {

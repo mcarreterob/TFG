@@ -42,9 +42,24 @@ function insertAnswer(index) {
       answer = '<p style="position:relative;top:4vw"><input type="text" name="selected" style="font-size:1.2vw;width:30vw"> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       break;
+    case "BINARY":
+      a1 = data[index][index + 1].possibleAnswers[0];
+      a2 = data[index][index + 1].possibleAnswers[1];
+      answer = '<button type="button" id="btn1" class="answer_btn transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)">' + a1 + '</button>' + '<button type="button" id="btn2" class="answer_btn transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)">' + a2 + '</button>'
+      elementLocation.insertAdjacentHTML('beforeend', answer);
+      break;
     default:
       alert("Ups! Ha habido algún error");
   }
+}
+
+function btnClicked(value, id) {
+  console.log(value);
+  var elements = document.getElementsByClassName("answer_btn"), i = 0;
+  for (i; i < elements.length; i++) {
+    document.getElementsByClassName("answer_btn")[i].classList.remove("btn_clicked");
+  }
+  document.getElementById(id).classList.add("btn_clicked");
 }
 
 function insertQuestion(data, index) {
@@ -56,8 +71,20 @@ function getNext()
     {
           console.log(index);
       if(index < data.length - 1) {
-        var porElementos=document.forms["form1"].elements.selected.value;
-        console.log(document.forms["form1"].elements.selected.value);
+        if ( document.forms["form1"].elements.selected ) {
+          var porElementos=document.forms["form1"].elements.selected.value;
+          console.log(document.forms["form1"].elements.selected.value);
+        } else {
+          var elemsLength = document.forms["form1"].elements.length;
+          for (var i = 0; i < elemsLength; i++) {
+            if (document.forms["form1"].elements[1].classList[1] === "btn_clicked") {
+              console.log(document.forms["form1"].elements[1].innerText);
+            } else{
+              console.log(document.forms["form1"].elements[0].innerText);
+            }
+          }
+          document.forms["form1"].elements[1].classList[1]
+        }
         document.getElementById('dynamicData').innerHTML = '';
         index ++;
         insertQuestion(data, index);
@@ -70,8 +97,10 @@ function getNext()
 function getPrevious()
     {
       if(index > 0) {
-        var porElementos=document.forms["form1"].elements.selected.value;
-        console.log(document.forms["form1"].elements.selected.value);
+        if ( document.forms["form1"].elements.selected ) {
+          var porElementos=document.forms["form1"].elements.selected.value;
+          console.log(document.forms["form1"].elements.selected.value);
+        }
         document.getElementById('dynamicData').innerHTML = '';
         index --;
         insertQuestion(data, index);
