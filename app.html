@@ -13,10 +13,22 @@
   <body width="100%" onload="init()">
     <h1>ISO 16283-2: Aislamiento a ruido de impactos</h1>
     <div class="grad1"></div>
-    <div class="progress-menu-container">
-
+    <div class="progress-menu-container transition-button" onclick="progressDropDown()">
+      <!-- <p style="position: relative;margin-left:1vw;top:1vh;font-size:1.1vw">Progreso<i class="fa fa-chevron-down" style="font-size:0.8vw;margin-left:2.5vw"></i></p> -->
+        Progreso<i class="fa fa-chevron-down dropdown-arrow"></i>
+        <!-- <div id="dropdownContent" class="progress-dropdown-content">
+          <a>Home</a>
+          <a>About</a>
+          <a>Contact</a>
+        </div> -->
     </div>
-    <div class="space" style="border:solid">
+    <div id="dropdownContent" class="progress-dropdown-content">
+      <a>Home</a>
+      <a>About</a>
+      <a>Contact</a>
+    </div>
+
+    <div class="space">
       <p id="question" class="question-text"></p>
       <form id="form1" class="form1">
         <div id="dynamicData" class="answer-text">

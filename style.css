@@ -105,7 +105,7 @@ body {
 
 .space {
   position: absolute;
-  top: 20vh;
+  top: 16vh;
   right: 12.5vw;
   width: 73.5vw;
   height: 30vw;
@@ -121,14 +121,64 @@ body {
 
 .progress-menu-container {
   position: relative;
-  top: 20vh;
+  margin-left: 1vw;
+  font-size: 1.1vw;
+  text-align: center;
+  line-height: 1.9;
+  top: 19vh;
   left: 2vw;
-  width: 5vw;
+  width: 9vw;
   height: 5vh;
   border-radius: 0.2vw;
-  background-color: #bbbbbb;
-
+  border: 0.15vw solid #bbbbbb;
+  background-color: white;
+  cursor: pointer;
 }
+
+.progress-menu-container:hover, .progress-menu-container:focus {
+  border-color: #f44336;
+  background-color: #f44336;
+  color: white
+}
+
+.progress-dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f1f1f1;
+  width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.progress-dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  width: 7.65vw;
+  top: 0.8vh;
+  position: relative;
+  left: 3vw;
+  top: 19vh;
+  font-size: 1.1vw;
+  right: 0.15vw;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  background-color: #bbbbbb;
+}
+
+.dropdown-arrow {
+  font-size:0.8vw !important;
+  margin-left:2.5vw
+}
+
+.progress-dropdown-content a:hover {
+  background-color: #dddddd;
+}
+
+.show {
+  display: contents;
+}
+
 .question-text {
   font-size: 1.4vw;
   line-height: 1.2;

@@ -1,6 +1,7 @@
 console.log(data);
 var index = 0;
 var answers = {};
+var dropdownVisible = false;
 function init(){
   insertQuestion(data, index);
   insertAnswer(index);
@@ -60,6 +61,31 @@ function btnClicked(value, id) {
     document.getElementsByClassName("answer_btn")[i].classList.remove("btn_clicked");
   }
   document.getElementById(id).classList.add("btn_clicked");
+}
+
+function progressDropDown() {
+  console.log("LLL");
+  if ( dropdownVisible ) {
+      document.getElementById("dropdownContent").classList.remove("show");
+      dropdownVisible = false;
+  } else {
+    document.getElementById("dropdownContent").classList.add("show");
+    dropdownVisible = true;
+  }
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.progress-menu-container') && !event.target.matches('.fa.fa-chevron-down')) {
+    var dropdowns = document.getElementsByClassName("progress-dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+        dropdownVisible = false;
+      }
+    }
+  }
 }
 
 function insertQuestion(data, index) {
