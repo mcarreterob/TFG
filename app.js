@@ -5,6 +5,11 @@ var dropdownVisible = false;
 function init(){
   insertQuestion(data, index);
   insertAnswer(index);
+  for (var i = 0; i < data.length; i++) {
+    questNumber = i + 1;
+    tpl = "<p>Pregunta " + questNumber + "</p>";
+    document.getElementById("dropdownContent").insertAdjacentHTML('beforeend', tpl);
+  }
 }
 
 function insertAnswer(index) {
@@ -64,12 +69,13 @@ function btnClicked(value, id) {
 }
 
 function progressDropDown() {
-  console.log("LLL");
   if ( dropdownVisible ) {
-      document.getElementById("dropdownContent").classList.remove("show");
-      dropdownVisible = false;
+    document.getElementById("contentContainer").classList.remove("show");
+    //document.getElementById("dropdownContent").classList.remove("show");
+    dropdownVisible = false;
   } else {
-    document.getElementById("dropdownContent").classList.add("show");
+    document.getElementById("contentContainer").classList.add("show");
+    //document.getElementById("dropdownContent").classList.add("show");
     dropdownVisible = true;
   }
 }

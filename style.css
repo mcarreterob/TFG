@@ -143,26 +143,33 @@ body {
 
 .progress-dropdown-content {
   display: none;
+}
+
+.progress-dropdown-content-list{
   position: relative;
   background-color: #f1f1f1;
-  width: 160px;
+  top: 19vh;
+  left: 3vw;
+  width: 10vw;
+  height: 61vh;
   overflow: auto;
+  scroll-behavior: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-.progress-dropdown-content a {
+
+.progress-dropdown-content p {
   color: black;
   padding: 12px 16px;
   width: 7.65vw;
-  top: 0.8vh;
   position: relative;
-  left: 3vw;
-  top: 19vh;
+  /* left: 3vw;
+  top: 18.7vh; */
+  margin: 0;
   font-size: 1.1vw;
   right: 0.15vw;
   text-decoration: none;
   cursor: pointer;
-  display: block;
   background-color: #bbbbbb;
 }
 
@@ -171,7 +178,7 @@ body {
   margin-left:2.5vw
 }
 
-.progress-dropdown-content a:hover {
+.progress-dropdown-content p:hover {
   background-color: #dddddd;
 }
 
