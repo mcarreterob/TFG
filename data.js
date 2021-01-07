@@ -24,7 +24,7 @@ var data = [
   {
     "3": {
       "question": "El nivel de ruido de fondo, ¿en qué recinto debe ser medido?",
-      "answerType": "MULTI",
+      "answerType": "BINARY",
       "numberAnswers": 2,
       "possibleAnswers": {
           "0": "Receptor",
@@ -37,7 +37,7 @@ var data = [
     "4": {
       "question": "El área de absorción equivalente se puede calcular utilizando la fórmula del TR de Sabine"
                   + " (T = 0.161V/A) si y sólo si es el único elemento absorbente en el recinto.",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"
@@ -89,7 +89,7 @@ var data = [
       "question": "En caso de que se considere necesario modificar el campo sonoro introduciendo de manera temporal "
                   + "mobiliario adicional o difusores dentro del recinto receptor, podríamos hacerlo como consideremos "
                   + "oportuno sin ningún tipo de restricción a tener en cuenta.",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"
@@ -131,18 +131,20 @@ var data = [
     "10": {
       "question": "'Las mediciones no deberían iniciarse hasta que el nivel de ruido se haya estabilizado. Si no se obtienen "
                   + "condiciones estables pasados 5 min, las mediciones deberían realizarse durante un período de medición "
-                  + "bien definido.' ¿En qué caso se debe seguir este procedimiento?<br><br>"
-                  + "Nota: la respuesta son dos palabras.",
-      "answerType": "OPEN",
-      "units": "",
-      "correctAnswer": "dependencia temporal"
+                  + "bien definido.' ¿En qué caso se debe seguir este procedimiento?",
+      "answerType": "BINARY",
+      "possibleAnswers": {
+          "0": "Dependencia temporal",
+          "1": "Independencia temporal"
+      },
+      "correctAnswer": "Dependencia temporal"
     }
   },
   {
     "11": {
       "question": "Utilizando posiciones fijas de micrófono, el operador puede o no estar presente en el recinto. En caso de estar "
                   + "presente, el tronco del cuerpo del operador debe permanecer a una distancia de al menos 2 metros desde el micrófono.",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"
@@ -155,7 +157,7 @@ var data = [
       "question": "Según la norma, utilizando micrófono fijo para la máquina de impactos como fuente, se debe realizar el mismo número de "
                   + "mediciones para cada posición de la máquina de impactos y se debe realizar al menos una medición para "
                   + "cada posición de la máquina de impactos.",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"
@@ -165,18 +167,25 @@ var data = [
   },
   {
     "13": {
-      "question": "Identifique, separadas por comas, las trayectorias de barrido manual de micrófono de la figura.<br><br>"
-                  + "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='333' height='359'>",
-      "answerType": "OPEN_LONG",
-      "units": "",
-      "correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
+      "question": "¿Qué figura representa la trayectoria helicoidal?"
+                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "attachments": [
+        "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
+        "<img src='img/trayectoria2.png' alt='trayectoria2' class='image-button'>",
+        "<img src='img/trayectoria3.png' alt='trayectoria3' class='image-button'>",
+        "<img src='img/trayectoria4.png' alt='trayectoria4' class='image-button'>",
+      ],
+      "answerType": "MULTI_BUTTONS",
+      // "units": "",
+      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
+      "correctAnswer": "multiBtn1"
     }
   },
   {
     "14": {
       "question": "El procedimiento de baja frecuencia se debe utilizar para bandas de 1/3 octava de 50 Hz, 63 Hz, 80 Hz y 125 Hz "
                   + "en el recinto receptor cuando su volumen es inferior a 25 metros cúbicos.",
-      "answerType": "TRUE_FALSE",
+      "answerType": "BINARY",
       "possibleAnswers": {
           "0": "Verdadero",
           "1": "Falso"
@@ -186,10 +195,10 @@ var data = [
   },
   {
     "15": {
-      "question": "<img style='float:right;position:relative;top:1vw' src='img/posicion-micro.png' alt='trayectorias' width='243' height='198'>"
-                  + "La figura muestra un ejemplo de posición de micrófono de esquina para el procedimiento de baja frecuencia. "
+      "question": "La figura muestra un ejemplo de posición de micrófono de esquina para el procedimiento de baja frecuencia. "
                   + "d-1 = 1,5 metros; d-2 = 1,35 metros. "
-                  + "¿Está colocado correctamente el micrófono?",
+                  + "¿Está colocado correctamente el micrófono?"
+                  + "<img style='float:right;position:relative;top:4vh;right:8vw;width:17vw;height:16vw' src='img/posicion-micro.jpg' alt='trayectorias'>",
       "answerType": "MULTI",
       "numberAnswers": 4,
       "possibleAnswers": {
@@ -204,9 +213,8 @@ var data = [
   {
     "16": {
       "question": "¿Cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
-                  + "o de mano para cada posición de la fuente de impactos?<br>"
-                  + "Nota: escriba el valor numérico, p.e.: 2 (no escriba 'dos').",
-      "answerType": "OPEN",
+                  + "o de mano para cada posición de la fuente de impactos?",
+      "answerType": "NUMBER",
       "units": "",
       "correctAnswer": "4"
     }
@@ -215,13 +223,45 @@ var data = [
     "17": {
       "question": "Para el procedimiento de baja frecuencia, ¿es necesario medir el ruido de fondo en cada esquina utilizada "
                   + "para calcular los niveles de presión acústica de la esquina?",
-      "answerType": "MULTI",
+      "answerType": "BINARY",
       "numberAnswers": 2,
       "possibleAnswers": {
-          "0": "Sí.",
-          "1": "No."
+          "0": "Sí",
+          "1": "No"
       },
       "correctAnswer": "Sí."
+    }
+  },
+  {
+    "18": {
+      "question": "¿Qué figura representa la trayectoria cilíndrica?"
+                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "attachments": [
+        "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
+        "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
+        "<img src='img/trayectoria3.png' alt='trayectoria3' width='135' height='155'>",
+        "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
+      ],
+      "answerType": "MULTI_BUTTONS",
+      // "units": "",
+      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
+      "correctAnswer": "multiBtn2"
+    }
+  },
+  {
+    "19": {
+      "question": "¿Qué figura representa la trayectoria tres semicírculos?"
+                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "attachments": [
+        "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
+        "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
+        "<img src='img/trayectoria3.png' alt='trayectoria3' width='135' height='155'>",
+        "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
+      ],
+      "answerType": "MULTI_BUTTONS",
+      // "units": "",
+      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
+      "correctAnswer": "multiBtn3"
     }
   }
   ];

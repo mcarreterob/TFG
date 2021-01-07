@@ -5,6 +5,10 @@ body {
     font-family: 'Ubuntu Mono';
 }
 
+.primary-font {
+  font-family: 'Ubuntu Mono';
+}
+
 .form1 {
   position: relative;
   /* left: 10vw; */
@@ -12,8 +16,28 @@ body {
   font-size: 1.4vw;
 }
 
+.input-box {
+  font-size:1.2vw;
+  width:15vw;
+  position:relative;
+}
+
+.answered {
+  background-color: rgba(255, 200, 0, 0.9) !important;
+}
+
+.multi-button {
+  /* width:8vw !important; */
+  height:19vh !important;
+  margin-left:5vw
+}
+
+.image-button {
+  width: 7vw;
+  height: 12.6vh;
+}
+
 .prev-button {
-  font-family: 'Ubuntu Mono';
   font-size: 1.1vw;
   /* padding: top right bottom left; */
   padding: 0.2vw 0.5vw 0.1vw 0.4vw;
@@ -32,7 +56,6 @@ body {
 }
 
 .next-button {
-  font-family: 'Ubuntu Mono';
   font-size: 1.1vw;
   /* padding: top right bottom left; */
   padding: 0.2vw 0.5vw 0.1vw 0.4vw;
@@ -55,7 +78,6 @@ body {
 }
 
  .myBtn {
-   font-family: 'Ubuntu Mono';
    position: absolute;
    top: 61vh;
    right: 45.5vw;
@@ -74,9 +96,7 @@ body {
    color: white
  }
 
-
 .answer_btn {
-  font-family: 'Ubuntu Mono';
   position: relative;
   top: 8vh;
   font-size: 1.3vw;
@@ -87,7 +107,15 @@ body {
   border: 0.15vw solid #bbbbbb;
   background-color: white;
   border-radius: 0.2vw;
+}
 
+.left {
+  left: 0vw;
+}
+
+.top {
+  position: relative;
+  top: 9vh
 }
 
 #btn2 {
@@ -108,15 +136,15 @@ body {
   top: 16vh;
   right: 12.5vw;
   width: 73.5vw;
-  height: 30vw;
+  height: 70vh;
 }
 
 .grad1 {
   height: 0.3vw;
   width: 100%;
   background-image: linear-gradient(to right, rgba(255,0,0,0) 10%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 90%);
-  position: absolute;
-  top: 14vh;
+  position: relative;
+  top: 7vw;
 }
 
 .progress-menu-container {
@@ -128,7 +156,7 @@ body {
   top: 19vh;
   left: 2vw;
   width: 9vw;
-  height: 5vh;
+  height: 2.3vw;
   border-radius: 0.2vw;
   border: 0.15vw solid #bbbbbb;
   background-color: white;
@@ -163,8 +191,6 @@ body {
   padding: 12px 16px;
   width: 7.65vw;
   position: relative;
-  /* left: 3vw;
-  top: 18.7vh; */
   margin: 0;
   font-size: 1.1vw;
   right: 0.15vw;
@@ -197,15 +223,15 @@ body {
   font-size: 1.1vw;
   left: 2vw;
   overflow-y: auto;
-  height: 18vw;
+  height: 50vh;
   width: 100%;
 }
 
 h1 {
   font-size: 3vw;
   text-align: center;
-  line-height: 0.5;
+  /* line-height: 0.5; */
   position: absolute;
   right: 16.5vw;
-  top: 2vh;
+  /* top: 2vh; */
 }
