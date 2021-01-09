@@ -35,7 +35,7 @@ var data = [
   },
   {
     "4": {
-      "question": "El área de absorción equivalente se puede calcular utilizando la fórmula del TR de Sabine"
+      "question": "El área de absorción equivalente se puede calcular utilizando la fórmula del TR de Sabine<br>"
                   + " (T = 0.161V/A) si y sólo si es el único elemento absorbente en el recinto.",
       "answerType": "BINARY",
       "possibleAnswers": {
@@ -113,7 +113,8 @@ var data = [
                 + "máquina de impactos desde los bordes del suelo debe ser de al menos 0.5 metros.",
           "4": "Ninguna de las anteriores."
       },
-      "correctAnswer": "Las dos primeras opciones son correctas."
+      "correctAnswer": "La máquina de impactos se debe colocar en al menos cuatro posiciones diferentes distribuidas de manera aleatoria. "
+                      + "La distancia de la máquina de impactos desde los bordes del suelo debe ser de al menos 0.5 metros."
     }
   },
   {
@@ -124,7 +125,7 @@ var data = [
                   + "caída libre desde una altura aproximada (+-1cm) de...",
       "answerType": "OPEN",
       "units": "cm",
-      "correctAnswer": 1
+      "correctAnswer": 100
     }
   },
   {
@@ -167,8 +168,7 @@ var data = [
   },
   {
     "13": {
-      "question": "¿Qué figura representa la trayectoria helicoidal?"
-                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "question": "¿Qué figura representa la trayectoria helicoidal?",
       "attachments": [
         "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
         "<img src='img/trayectoria2.png' alt='trayectoria2' class='image-button'>",
@@ -176,8 +176,6 @@ var data = [
         "<img src='img/trayectoria4.png' alt='trayectoria4' class='image-button'>",
       ],
       "answerType": "MULTI_BUTTONS",
-      // "units": "",
-      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
       "correctAnswer": "multiBtn1"
     }
   },
@@ -229,13 +227,12 @@ var data = [
           "0": "Sí",
           "1": "No"
       },
-      "correctAnswer": "Sí."
+      "correctAnswer": "Sí"
     }
   },
   {
     "18": {
-      "question": "¿Qué figura representa la trayectoria cilíndrica?"
-                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "question": "¿Qué figura representa la trayectoria cilíndrica?",
       "attachments": [
         "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
         "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
@@ -243,15 +240,12 @@ var data = [
         "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
       ],
       "answerType": "MULTI_BUTTONS",
-      // "units": "",
-      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
       "correctAnswer": "multiBtn2"
     }
   },
   {
     "19": {
-      "question": "¿Qué figura representa la trayectoria tres semicírculos?"
-                  /*+ "<img style='position:relative;left:35vw;top:1vw' src='img/trayectorias-micro.png' alt='trayectorias' width='135' height='155'>"*/,
+      "question": "¿Qué figura representa la trayectoria tres semicírculos?",
       "attachments": [
         "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
         "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
@@ -259,9 +253,62 @@ var data = [
         "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
       ],
       "answerType": "MULTI_BUTTONS",
-      // "units": "",
-      //"correctAnswer": "circular, helicoidal, cilíndrica, tres semicírculos"
       "correctAnswer": "multiBtn3"
+    }
+  },
+  {
+    "20": {
+      "question": "¿Cuántos dB es preferible que esté el nivel de ruido de fondo por debajo del nivel de señal y el ruido de fondo combinado?",
+      "answerType": "MULTI",
+      "numberAnswers": 4,
+      "possibleAnswers": {
+          "0": "<6dB",
+          "1": "6dB",
+          "2": "6dB < L < 10dB",
+          "3": ">10dB"
+      },
+      "correctAnswer": ">10dB"
+    }
+  },
+  {
+    "21": {
+      "question": "En caso de que la diferencia entre el nivel de ruido de fondo y el nivel de señal+ruido de fondo sea inferior a 10dB pero "
+                  + "superior a 6dB, ¿habría que calcular correcciones?",
+      "answerType": "BINARY",
+      "numberAnswers": 2,
+      "possibleAnswers": {
+          "0": "Sí",
+          "1": "No"
+      },
+      "correctAnswer": "Sí"
+    }
+  },
+  {
+    "22": {
+      "question": "En caso de que la diferencia entre el nivel de ruido de fondo y el nivel de señal+ruido de fondo sea inferior o igual a 6dB, "
+                  + "¿es correcto corregir con 1,3dB en cualquier banda de frecuencia?",
+      "answerType": "BINARY",
+      "numberAnswers": 2,
+      "possibleAnswers": {
+          "0": "Sí",
+          "1": "No"
+      },
+      "correctAnswer": "Sí"
+    }
+  },
+  {
+    "23": {
+      "question": "Si hablamos de las mediciones del TR en el recinto receptor, ¿ejecutaría correctamente el procedimiento por defecto "
+                  + "la siguiente secuencia de código?"
+                  + "<img style='float:right;position:relative;top:7vh;right:25vw;width:24.48vw;height:12.03vw' src='img/TR-recintoR-proc-defecto.png' alt='TR-codeseq'>",
+      "answerType": "BINARY",
+      "move": true,
+      "numberAnswers": 2,
+      "possibleAnswers": {
+          "0": "Sí",
+          "1": "No"
+      },
+      "correctAnswer": "Sí"
     }
   }
   ];

@@ -8,6 +8,7 @@ var index = 0;
 function init(){
   insertQuestion(data, index);
   insertAnswer(index);
+  var questNumber;
   for (var i = 0; i < data.length; i++) {
     questNumber = i + 1;
     tpl = '<p id="' + questNumber + '" onclick="selectFromProgress(id)">Pregunta ' + questNumber + "</p>";
@@ -66,7 +67,7 @@ function insertAnswer(index) {
   switch (type) {
     case "OPEN":
       units = data[index][index + 1].units;
-      answer = '<p class="top"><input type="text" id="answerInput" name="selected" class="input-box primary-font" '
+      answer = '<p class="top"><input type="text" id="answerInput" name="selected" class="input-box primary-font medium-font-size" '
                 + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)"> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
@@ -74,7 +75,7 @@ function insertAnswer(index) {
       }
       break;
     case "NUMBER":
-      answer = '<input type="number" id="answerInput" name="selected" class="input-box top primary-font" '
+      answer = '<input type="number" id="answerInput" name="selected" class="input-box top primary-font medium-font-size" '
                 + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" onchange="saveAnswer(this.value)" min="0" max="20"> ';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
@@ -104,7 +105,7 @@ function insertAnswer(index) {
           for (var i = 0; i < data[index][index + 1].attachments.length; i++) {
             attachments.push(data[index][index + 1].attachments[i]);
             btnId = 'multiBtn' + i;
-            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn primary-font left transition-button" onclick="btnClicked(id, id)">'
+            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button" onclick="btnClicked(id, id)">'
                       + attachments[i] + '</button>';
           }
           elementLocation.insertAdjacentHTML('beforeend', answer);
@@ -124,9 +125,10 @@ function insertAnswer(index) {
     case "BINARY":
       a1 = data[index][index + 1].possibleAnswers[0];
       a2 = data[index][index + 1].possibleAnswers[1];
-      answer = '<button type="button" id="btn1" class="answer_btn primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)">'
+      style = data[index][index + 1].move ? 'style="top:35vh"' : null;
+      answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)">'
                 + a1 + '</button>'
-                + '<button type="button" id="btn2" class="answer_btn primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)">'
+                + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)">'
                 + a2 + '</button>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer && markedAnswer === a1) {
@@ -142,9 +144,7 @@ function insertAnswer(index) {
 }
 
 function btnClicked(value, id) {
-  console.log(value);
   var elements = document.getElementsByClassName("answer_btn"), i = 0;
-  console.log(elements);
   for (i; i < elements.length; i++) {
     elements[i].classList.remove("btn_clicked");
   }
@@ -186,6 +186,9 @@ window.onclick = function(event) {
       }
     }
   }
+  if (event.target == document.getElementById("myModal")) {
+    closeModal();
+  }
 }
 
 function insertQuestion(data, index) {
@@ -198,22 +201,7 @@ function showAlert() {
 }
 
 function getNext(){
-  console.log(index);
   if(index < data.length - 1) {
-    if ( document.forms["form1"].elements.selected ) {
-      var porElementos=document.forms["form1"].elements.selected.value;
-      console.log(document.forms["form1"].elements.selected.value);
-    } else {
-      var elemsLength = document.forms["form1"].elements.length;
-      for (var i = 0; i < elemsLength; i++) {
-        if (document.forms["form1"].elements[1].classList[1] === "btn_clicked") {
-          console.log(document.forms["form1"].elements[1].innerText);
-        } else{
-          console.log(document.forms["form1"].elements[0].innerText);
-        }
-      }
-      document.forms["form1"].elements[1].classList[1]
-    }
     document.getElementById('dynamicData').innerHTML = '';
     index ++;
     if (index === data.length - 1) {
@@ -222,18 +210,43 @@ function getNext(){
     insertQuestion(data, index);
     insertAnswer(index);
   } else {
-    finish = showAlert();
-    finish ? console.log("finish") : null;
-    //checkAnswers();
+    finish = showAlert() ? checkAnswers() : null;
   }
+}
+
+function checkAnswers() {
+  var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(data.length * 0.8), passed = false;;
+  for (i; i < answers.length; i++) {
+    questNumber = answers[i].questNumber;
+    answers[i].answer === data[questNumber - 1][questNumber].correctAnswer ?
+      rightAnswers.push({
+        questNumber: answers[i].questNumber,
+        isRight: true
+      }) : null
+  }
+  document.getElementById("modalResult").innerText= rightAnswers.length + '/' + data.length;
+  passed = rightAnswers.length < limit ? false : true;
+  if ( passed ) {
+    document.getElementById("modalResult").classList.add("passed-color");
+    document.getElementById("passed").style.display = "block";
+  } else {
+    document.getElementById("modalResult").classList.add("failed-color");
+    document.getElementById("failed").style.display = "block";
+  }
+  console.log(rightAnswers);
+  showModal();
+}
+
+function showModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
 }
 
 function getPrevious() {
   if(index > 0) {
-    if ( document.forms["form1"].elements.selected ) {
-      var porElementos=document.forms["form1"].elements.selected.value;
-      console.log(document.forms["form1"].elements.selected.value);
-    }
     document.getElementById('dynamicData').innerHTML = '';
     index --;
     insertQuestion(data, index);
@@ -243,3 +256,17 @@ function getPrevious() {
     document.getElementById("next").innerHTML = '<i class="fa fa-chevron-right">';
   }
 }
+
+//
+//
+// var volumenRecinto, // expresado en [metros cúbicos]
+//     f; // expresada en [Hz]
+// if (volumenRecinto > 25) {
+//   for (f = 50; f < 5000; f++) {
+//     ruidoInterrumpido() || respuestaImpulsoIntegrada();
+//   }
+// } else {
+//   for (f = 100; f < 5000; f++) {
+//     ruidoInterrumpido() || respuestaImpulsoIntegrada();
+//   }
+// }

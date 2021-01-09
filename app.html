@@ -14,17 +14,10 @@
     <h1>ISO 16283-2: Aislamiento a ruido de impactos</h1>
     <div class="grad1"></div>
     <div class="progress-menu-container transition-button" onclick="progressDropDown()">
-      <!-- <p style="position: relative;margin-left:1vw;top:1vh;font-size:1.1vw">Progreso<i class="fa fa-chevron-down" style="font-size:0.8vw;margin-left:2.5vw"></i></p> -->
         Progreso<i class="fa fa-chevron-down dropdown-arrow"></i>
-        <!-- <div id="dropdownContent" class="progress-dropdown-content">
-          <a>Home</a>
-          <a>About</a>
-          <a>Contact</a>
-        </div> -->
     </div>
     <div id="contentContainer" class="progress-dropdown-content">
       <div id="dropdownContent" class="progress-dropdown-content-list">
-
       </div>
     </div>
 
@@ -32,11 +25,19 @@
       <p id="question" class="question-text"></p>
       <form id="form1" class="form1">
         <div id="dynamicData" class="answer-text">
-
         </div>
       </form>
-      <!-- <input type="button" style="position: relative; top: 10vw" value="obtener el nombre" onclick="capturar()">
-      <div id="resultado" style="position: relative; top: 10vw"></div> -->
+    </div>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p class="big-font-size modal-text">Resultado:</p>
+        <p id="modalResult" class="modal-result"></p>
+        <p id="passed" class="passed-color passed-text">Enhorabuena, has superado la prueba con éxito. Buen trabajo</p>
+        <p id="failed" class="failed-color failed-text">Lo siento, no has pasado el corte. Debes contestar correctamente al menos al 80% de las preguntas.</p>
+      </div>
+
     </div>
     <button class="prev-button primary-font transition-button" onclick="getPrevious()"><i class="fa fa-chevron-left"></i></button>
     <button id="next" class="next-button primary-font transition-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button>
