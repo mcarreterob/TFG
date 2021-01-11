@@ -70,7 +70,8 @@ function insertAnswer(index) {
     case "OPEN":
       units = data[index][index + 1].units;
       answer = '<p class="top"><input type="text" id="answerInput" name="selected" class="input-box primary-font medium-font-size" '
-                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" ' + elementDisabled + '> ' + units + '</p>';
+                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" ' + elementDisabled
+                + '> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
         document.getElementById('answerInput').value = markedAnswer;
@@ -78,7 +79,8 @@ function insertAnswer(index) {
       break;
     case "NUMBER":
       answer = '<input type="number" id="answerInput" name="selected" class="input-box top primary-font medium-font-size" '
-                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" onchange="saveAnswer(this.value)" min="0" max="20" ' + elementDisabled + '> ';
+                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)"'
+                + ' onchange="saveAnswer(this.value)" min="0" max="20" ' + elementDisabled + '> ';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
         document.getElementById('answerInput').value = markedAnswer;
@@ -88,7 +90,8 @@ function insertAnswer(index) {
       numberAnswers = data[index][index + 1].numberAnswers;
       for (var i = 0; i < numberAnswers; i++) {
         possAnswer = data[index][index + 1].possibleAnswers[i];
-        answer = '<p><input type="radio" name="selected" id=possibleAnswer' + i + ' value=possibleAnswer' + i + ' onchange="saveAnswer(this.value)" ' + elementDisabled + '>  ' + possAnswer + '</p>';
+        answer = '<p><input type="radio" name="selected" id=possibleAnswer' + i + ' value=possibleAnswer'
+                  + i + ' onchange="saveAnswer(this.value)" ' + elementDisabled + '>  ' + possAnswer + '</p>';
         elementLocation.insertAdjacentHTML('beforeend', answer);
       }
       if (markedAnswer) {
@@ -104,7 +107,8 @@ function insertAnswer(index) {
           for (var i = 0; i < data[index][index + 1].attachments.length; i++) {
             attachments.push(data[index][index + 1].attachments[i]);
             btnId = 'multiBtn' + i;
-            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button" onclick="btnClicked(id, id)" ' + elementDisabled + '>'
+            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button"'
+                      + ' onclick="btnClicked(id, id)" ' + elementDisabled + '>'
                       + attachments[i] + '</button>';
           }
           elementLocation.insertAdjacentHTML('beforeend', answer);
@@ -125,9 +129,11 @@ function insertAnswer(index) {
       a1 = data[index][index + 1].possibleAnswers[0];
       a2 = data[index][index + 1].possibleAnswers[1];
       style = data[index][index + 1].move ? 'style="top:35vh"' : null;
-      answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)" ' + elementDisabled + '>'
+      answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button"'
+                + ' onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)" ' + elementDisabled + '>'
                 + a1 + '</button>'
-                + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)" ' + elementDisabled + '>'
+                + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button"'
+                + ' onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)" ' + elementDisabled + '>'
                 + a2 + '</button>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer && markedAnswer === a1) {
