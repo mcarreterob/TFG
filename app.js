@@ -4,6 +4,7 @@ var index = 0;
     dropdownVisible = false;
     firstLoad = true;
     fromProgress = false;
+    end = false;
 
 function init(){
   insertQuestion(data, index);
@@ -60,6 +61,7 @@ function insertAnswer(index) {
       attachments,
       markedAnswer,
       indexInAnswers;
+      elementDisabled = end ? "disabled" : "";
   if ( answers.find(pos => pos.questNumber === index + 1) ) {
     indexInAnswers = answers.findIndex(pos => pos.questNumber === index + 1)
     markedAnswer = answers[indexInAnswers].answer;
@@ -68,7 +70,7 @@ function insertAnswer(index) {
     case "OPEN":
       units = data[index][index + 1].units;
       answer = '<p class="top"><input type="text" id="answerInput" name="selected" class="input-box primary-font medium-font-size" '
-                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)"> ' + units + '</p>';
+                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" ' + elementDisabled + '> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
         document.getElementById('answerInput').value = markedAnswer;
@@ -76,7 +78,7 @@ function insertAnswer(index) {
       break;
     case "NUMBER":
       answer = '<input type="number" id="answerInput" name="selected" class="input-box top primary-font medium-font-size" '
-                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" onchange="saveAnswer(this.value)" min="0" max="20"> ';
+                + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" onchange="saveAnswer(this.value)" min="0" max="20" ' + elementDisabled + '> ';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
         document.getElementById('answerInput').value = markedAnswer;
@@ -86,10 +88,7 @@ function insertAnswer(index) {
       numberAnswers = data[index][index + 1].numberAnswers;
       for (var i = 0; i < numberAnswers; i++) {
         possAnswer = data[index][index + 1].possibleAnswers[i];
-        answer = '<p><input type="radio" name="selected" id=possibleAnswer' + i + ' value=possibleAnswer' + i + ' onchange="saveAnswer(this.value)">  ' + possAnswer + '</p>';
-        if (numberAnswers < 4) {
-          answer += '<br>';
-        }
+        answer = '<p><input type="radio" name="selected" id=possibleAnswer' + i + ' value=possibleAnswer' + i + ' onchange="saveAnswer(this.value)" ' + elementDisabled + '>  ' + possAnswer + '</p>';
         elementLocation.insertAdjacentHTML('beforeend', answer);
       }
       if (markedAnswer) {
@@ -105,7 +104,7 @@ function insertAnswer(index) {
           for (var i = 0; i < data[index][index + 1].attachments.length; i++) {
             attachments.push(data[index][index + 1].attachments[i]);
             btnId = 'multiBtn' + i;
-            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button" onclick="btnClicked(id, id)">'
+            answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button" onclick="btnClicked(id, id)" ' + elementDisabled + '>'
                       + attachments[i] + '</button>';
           }
           elementLocation.insertAdjacentHTML('beforeend', answer);
@@ -116,7 +115,7 @@ function insertAnswer(index) {
       break;
     case "OPEN_LONG":
       units = data[index][index + 1].units;
-      answer = '<p><input type="text" name="selected" style="font-size:1.2vw;width:30vw"> ' + units + '</p>';
+      answer = '<p><input type="text" name="selected" style="font-size:1.2vw;width:30vw" ' + elementDisabled + '> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
         document.getElementById('answerInput').value = markedAnswer;
@@ -126,9 +125,9 @@ function insertAnswer(index) {
       a1 = data[index][index + 1].possibleAnswers[0];
       a2 = data[index][index + 1].possibleAnswers[1];
       style = data[index][index + 1].move ? 'style="top:35vh"' : null;
-      answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)">'
+      answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)" ' + elementDisabled + '>'
                 + a1 + '</button>'
-                + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)">'
+                + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button" onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)" ' + elementDisabled + '>'
                 + a2 + '</button>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer && markedAnswer === a1) {
@@ -197,7 +196,7 @@ function insertQuestion(data, index) {
 }
 
 function showAlert() {
-  return confirm("¿Seguro que quieres terminar y ver tu resultado?");
+  return confirm("¿Seguro que quieres terminar y ver tu resultado?.");
 }
 
 function getNext(){
@@ -218,12 +217,24 @@ function checkAnswers() {
   var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(data.length * 0.8), passed = false;;
   for (i; i < answers.length; i++) {
     questNumber = answers[i].questNumber;
-    answers[i].answer === data[questNumber - 1][questNumber].correctAnswer ?
+    if (answers[i].answer === data[questNumber - 1][questNumber].correctAnswer) {
       rightAnswers.push({
         questNumber: answers[i].questNumber,
         isRight: true
-      }) : null
+      })
+      document.getElementById(questNumber.toString()).classList.add("answered-right");
+    } else {
+      document.getElementById(questNumber.toString()).classList.add("answered-wrong");
+    }
   }
+  generateModalContent(rightAnswers);
+  console.log(rightAnswers);
+  showModal();
+  end = true;
+}
+
+function generateModalContent(rightAnswers) {
+  var passed = false, limit = Math.round(data.length * 0.8);
   document.getElementById("modalResult").innerText= rightAnswers.length + '/' + data.length;
   passed = rightAnswers.length < limit ? false : true;
   if ( passed ) {
@@ -233,8 +244,6 @@ function checkAnswers() {
     document.getElementById("modalResult").classList.add("failed-color");
     document.getElementById("failed").style.display = "block";
   }
-  console.log(rightAnswers);
-  showModal();
 }
 
 function showModal() {
@@ -243,6 +252,8 @@ function showModal() {
 
 function closeModal() {
   document.getElementById("myModal").style.display = "none";
+  document.getElementById('dynamicData').innerHTML = '';
+  insertAnswer(index);
 }
 
 function getPrevious() {
@@ -256,17 +267,3 @@ function getPrevious() {
     document.getElementById("next").innerHTML = '<i class="fa fa-chevron-right">';
   }
 }
-
-//
-//
-// var volumenRecinto, // expresado en [metros cúbicos]
-//     f; // expresada en [Hz]
-// if (volumenRecinto > 25) {
-//   for (f = 50; f < 5000; f++) {
-//     ruidoInterrumpido() || respuestaImpulsoIntegrada();
-//   }
-// } else {
-//   for (f = 100; f < 5000; f++) {
-//     ruidoInterrumpido() || respuestaImpulsoIntegrada();
-//   }
-// }

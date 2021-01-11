@@ -33,6 +33,14 @@ body {
   background-color: rgba(255, 200, 0, 0.9) !important;
 }
 
+.answered-right {
+  background-color: #43ae36 !important;
+}
+
+.answered-wrong {
+  background-color: #f44336 !important;
+}
+
 .multi-button {
   /* width:8vw !important; */
   height:19vh !important;
@@ -42,6 +50,15 @@ body {
 .image-button {
   width: 7vw;
   height: 12.6vh;
+}
+
+.code-image {
+  float:right;
+  position:relative;
+  top:7vh;
+  right:25vw;
+  width:24.48vw;
+  height:12.03vw
 }
 
 .prev-button {
@@ -104,12 +121,16 @@ body {
 
 .modal-text {
   text-align: center;
+  position: relative;
+  top: 2vh;
 }
 
 .modal-result {
   text-align: center;
   font-size: 4vw;
   margin: 0vw 1vw 0vw 0vw;
+  position: relative;
+  top: 3.5vh
 }
 
 .answer_btn {
@@ -188,7 +209,7 @@ body {
   display: none;
 }
 
-.progress-dropdown-content-list{
+.progress-dropdown-content-list {
   position: relative;
   background-color: #f1f1f1;
   top: 19vh;
@@ -196,9 +217,15 @@ body {
   width: 10vw;
   height: 61vh;
   overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
   scroll-behavior: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+}
+
+.progress-dropdown-content-list::-webkit-scrollbar {
+    display: none;
 }
 
 .progress-dropdown-content p {
@@ -254,7 +281,7 @@ h1 {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 18.35vh; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -269,10 +296,9 @@ h1 {
   background-color: #ffffff;
   margin: auto;
   padding: 1vw;
-  border: 1px solid #888;
   border-radius: 0.2vw;
-  width: 35%;
-  height: 35%
+  width: 40%;
+  height: 40%
 }
 
 /* The Close Button */
@@ -290,23 +316,23 @@ h1 {
 }
 
 .passed-color {
-  color: #43f436;
+  color: #43ae36;
 }
 
 .passed-text {
   display: none;
   position: relative;
-  top: 1vw;
+  top: 5.5vh;
   text-align: center;
-  margin: 0vw 2vw 0vw 2vw;
+  margin: 4vh 2vw 4vh 2vw;
 }
 
 .failed-text {
   display: none;
   position: relative;
-  top: 1vw;
+  top: 4.5vh;
   text-align: center;
-  margin: 0vw 2vw 0vw 2vw;
+  margin: 4vh 2vw 4vh 2vw;
 }
 
 .failed-color {

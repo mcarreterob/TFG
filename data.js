@@ -18,7 +18,7 @@ var data = [
                   + " ¿Cuántos decibelios tiene que decrecer?",
       "answerType": "OPEN",
       "units": "dB",
-      "correctAnswer": 60
+      "correctAnswer": "60"
     }
   },
   {
@@ -51,22 +51,20 @@ var data = [
       "answerType": "MULTI",
       "numberAnswers": 4,
       "possibleAnswers": {
-          "0": "Los niveles de presión acútsica en el recinto receptor con la fuente de impactos funcionando,"
+          "0": "Los niveles de presión acústica en el recinto receptor con la fuente de impactos funcionando,"
                 + " los niveles de ruido de fondo en el recinto receptor cuando la fuente de impactos está "
                 + "apagada y los TR en el recinto emisor y en el recinto receptor.",
-          "1": "Los niveles de presión acútsica en el recinto receptor con la fuente de impactos funcionando,"
+          "1": "Los niveles de presión acústica en el recinto receptor con la fuente de impactos funcionando,"
                 + " los niveles de ruido de fondo en el recinto emisor y en el recinto receptor cuando la fuente de impactos está "
                 + "apagada y los TR en el recinto emisor y en el recinto receptor.",
           "2": "Los niveles de presión acústica en el recinto receptor con la fuente de impactos funcionando,"
                 + " los niveles de ruido de fondo en el recinto emisor y en el recinto receptor cuando la fuente de impactos está "
                 + "apagada y los TR en el recinto emisor.",
-          "3": "Los niveles de presión acútsica en el recinto receptor con la fuente de impactos funcionando,"
+          "3": "Los niveles de presión acústica en el recinto receptor con la fuente de impactos funcionando,"
                 + " los niveles de ruido de fondo en el recinto receptor cuando la fuente de impactos está "
                 + "apagada y los TR en el recinto receptor."
       },
-      "correctAnswer": "Los niveles de presión acútsica en el recinto receptor con la fuente de impactos funcionando,"
-                        + " los niveles de ruido de fondo en el recinto receptor cuando la fuente de impactos está "
-                        + "apagada y los TR en el recinto receptor."
+      "correctAnswer": "possibleAnswer3"
     }
   },
   {
@@ -81,7 +79,7 @@ var data = [
           "3": "Las dos primeras opciones son correctas.",
           "4": "Ninguna de las anteriores."
       },
-      "correctAnswer": "Las dos primeras opciones son correctas."
+      "correctAnswer": "possibleAnswer3"
     }
   },
   {
@@ -113,8 +111,7 @@ var data = [
                 + "máquina de impactos desde los bordes del suelo debe ser de al menos 0.5 metros.",
           "4": "Ninguna de las anteriores."
       },
-      "correctAnswer": "La máquina de impactos se debe colocar en al menos cuatro posiciones diferentes distribuidas de manera aleatoria. "
-                      + "La distancia de la máquina de impactos desde los bordes del suelo debe ser de al menos 0.5 metros."
+      "correctAnswer": "possibleAnswer2"
     }
   },
   {
@@ -125,7 +122,7 @@ var data = [
                   + "caída libre desde una altura aproximada (+-1cm) de...",
       "answerType": "OPEN",
       "units": "cm",
-      "correctAnswer": 100
+      "correctAnswer": "100"
     }
   },
   {
@@ -205,7 +202,7 @@ var data = [
           "2": "Ambas distancias son demasiado grandes, deben cumplir d < 0,3 m.",
           "3": "Ninguna de las respuestas anteriores son correctas."
       },
-      "correctAnswer": "Ninguna de las respuestas anteriores son correctas."
+      "correctAnswer": "possibleAnswer3"
     }
   },
   {
@@ -234,10 +231,10 @@ var data = [
     "18": {
       "question": "¿Qué figura representa la trayectoria cilíndrica?",
       "attachments": [
-        "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
-        "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
-        "<img src='img/trayectoria3.png' alt='trayectoria3' width='135' height='155'>",
-        "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
+        "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
+        "<img src='img/trayectoria2.png' alt='trayectoria2' class='image-button'>",
+        "<img src='img/trayectoria3.png' alt='trayectoria3' class='image-button'>",
+        "<img src='img/trayectoria4.png' alt='trayectoria4' class='image-button'>",
       ],
       "answerType": "MULTI_BUTTONS",
       "correctAnswer": "multiBtn2"
@@ -247,10 +244,10 @@ var data = [
     "19": {
       "question": "¿Qué figura representa la trayectoria tres semicírculos?",
       "attachments": [
-        "<img src='img/trayectoria1.png' alt='trayectoria1' width='135' height='155'>",
-        "<img src='img/trayectoria2.png' alt='trayectoria2' width='135' height='155'>",
-        "<img src='img/trayectoria3.png' alt='trayectoria3' width='135' height='155'>",
-        "<img src='img/trayectoria4.png' alt='trayectoria4' width='135' height='155'>",
+        "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
+        "<img src='img/trayectoria2.png' alt='trayectoria2' class='image-button'>",
+        "<img src='img/trayectoria3.png' alt='trayectoria3' class='image-button'>",
+        "<img src='img/trayectoria4.png' alt='trayectoria4' class='image-button'>",
       ],
       "answerType": "MULTI_BUTTONS",
       "correctAnswer": "multiBtn3"
@@ -267,7 +264,7 @@ var data = [
           "2": "6dB < L < 10dB",
           "3": ">10dB"
       },
-      "correctAnswer": ">10dB"
+      "correctAnswer": "possibleAnswer3"
     }
   },
   {
@@ -300,7 +297,7 @@ var data = [
     "23": {
       "question": "Si hablamos de las mediciones del TR en el recinto receptor, ¿ejecutaría correctamente el procedimiento por defecto "
                   + "la siguiente secuencia de código?"
-                  + "<img style='float:right;position:relative;top:7vh;right:25vw;width:24.48vw;height:12.03vw' src='img/TR-recintoR-proc-defecto.png' alt='TR-codeseq'>",
+                  + "<img class='code-image' src='img/TR-recintoR-proc-defecto.png' alt='TR-codeseq'>",
       "answerType": "BINARY",
       "move": true,
       "numberAnswers": 2,
