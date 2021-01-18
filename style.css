@@ -34,7 +34,7 @@ body {
 }
 
 .answered-right {
-  background-color: #43ae36 !important;
+  background-color: rgb(35, 200, 105) !important;
 }
 
 .answered-wrong {
@@ -316,7 +316,7 @@ h1 {
 }
 
 .passed-color {
-  color: #43ae36;
+  color: rgb(35, 200, 105);
 }
 
 .passed-text {
