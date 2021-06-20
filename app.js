@@ -159,11 +159,11 @@ function btnClicked(value, id) {
 
 function progressDropDown() {
   if ( dropdownVisible ) {
-    document.getElementById("contentContainer").classList.remove("show");
+    document.getElementById("dropdownContent").classList.remove("show");
     //document.getElementById("dropdownContent").classList.remove("show");
     dropdownVisible = false;
   } else {
-    document.getElementById("contentContainer").classList.add("show");
+    document.getElementById("dropdownContent").classList.add("show");
     //document.getElementById("dropdownContent").classList.add("show");
     dropdownVisible = true;
   }
