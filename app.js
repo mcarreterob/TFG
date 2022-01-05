@@ -1,10 +1,11 @@
 console.log(data);
-var index = 0;
-    answers = [];
-    dropdownVisible = false;
-    firstLoad = true;
-    fromProgress = false;
-    end = false;
+var index = 0,
+    answers = [],
+    dropdownVisible = false,
+    firstLoad = true,
+    fromProgress = false,
+    end = false,
+    coordInputs = 2;
 
 function init(){
   insertQuestion(data, index);
@@ -272,4 +273,27 @@ function getPrevious() {
   if (document.getElementsByTagName('I')[2].className === "fas fa-door-open") {
     document.getElementById("next").innerHTML = '<i class="fa fa-chevron-right">';
   }
+}
+
+
+function showScene() {
+  if (document.getElementById("scene-modal").style.display === "block") {
+  document.getElementById("scene-modal").style.display = "none";
+  } else {
+  document.getElementById("scene-modal").style.display = "block";
+  }
+}
+
+function addNewElement() {
+  var tpl = '<div class="scene-input">'
+          + ' Coordenada X <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="-300" max="300">'
+          + ' Coordenada Y <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="-200" max="200">'
+          + ' Altura <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="0" max="300">'
+          + ' <button type="button" class="primary-font medium-font-size add-element-button"'
+          + ' onclick="getElementPosition(\'elem' + coordInputs + '\')"> Añadir </button>'
+          + ' <button type="button" class="primary-font medium-font-size remove-element-button"'
+          + ' onclick="deleteMesh(\'elem' + coordInputs + '\')"><i class="fa fa-trash"></i></button>'
+          + '</div>'
+  document.getElementById("addMore").insertAdjacentHTML('beforebegin', tpl);
+  coordInputs += 1;
 }

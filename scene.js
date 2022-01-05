@@ -20,6 +20,10 @@ const PADDLE_WIDTH = 10,
       PADDLE_DEPTH = 10,
       PADDLE_QUALITY = 1;
 
+const RADIUS = 6,
+      SEGMENTS = 32,
+      RINGS = 16;
+
 var microphone,
     source;
 
@@ -61,8 +65,8 @@ function createScene() {
             FAR
         );
 
-    camera.position.y = mediaCondition.matches ? -440 : -400 /*-500 : -350*/;
-    camera.position.z = 90;
+    camera.position.y = mediaCondition.matches ? -340 : -300 /*-500 : -350*/;
+    camera.position.z = 190;
 
     scene = new THREE.Scene();
 
@@ -76,6 +80,7 @@ function createScene() {
 }
 
 function addMesh() {
+  console.log('addMesh');
     //PLANOS
     var plane_geometry = new THREE.PlaneGeometry(
       PLANE_WIDTH,
@@ -92,14 +97,13 @@ function addMesh() {
         map: wall_texture
       });
 
-    microphone_geometry = new THREE.CubeGeometry(
-      PADDLE_WIDTH,
-      PADDLE_HEIGTH,
-      PADDLE_DEPTH,
-      PADDLE_QUALITY);
+    microphone_geometry = new THREE.SphereGeometry(
+      RADIUS,
+      SEGMENTS,
+      RINGS);
     microphone_material = new THREE.MeshLambertMaterial(
       {
-        color: 0xFF0000
+        color: 0x0000FF
       });
     source_geometry = new THREE.CubeGeometry(
       PADDLE_WIDTH,
@@ -108,7 +112,7 @@ function addMesh() {
       PADDLE_QUALITY);
     source_material = new THREE.MeshBasicMaterial(
       {
-        color: 0x0000FF
+        color: 0xFF0000
       });
 
     //COLUMNAS
@@ -124,37 +128,37 @@ function addMesh() {
     floor = new THREE.Mesh(plane_geometry, floor_material);
     floor.position.x = 0;
     floor.position.y = 0;
-    floor.position.z = -100;
+    floor.position.z = 0;
 
     frontWall = new THREE.Mesh(plane_geometry, wall_material);
     frontWall.position.x = 0;
     frontWall.position.y = 200;
-    frontWall.position.z = 0;
+    frontWall.position.z = 100;
     frontWall.rotation.x = Math.PI/2;
 
     leftWall = new THREE.Mesh(plane_geometry, wall_material);
     leftWall.position.x = -300;
     leftWall.position.y = 0;
-    leftWall.position.z = 0;
+    leftWall.position.z = 100;
     leftWall.rotation.x = Math.PI/2;
     leftWall.rotation.y = Math.PI/2;
 
     rightWall = new THREE.Mesh(plane_geometry, wall_material);
     rightWall.position.x = 300;
     rightWall.position.y = 0;
-    rightWall.position.z = 0;
+    rightWall.position.z = 100;
     rightWall.rotation.x = Math.PI/2;
     rightWall.rotation.y = -Math.PI/2;
 
     microphone = new THREE.Mesh(microphone_geometry, microphone_material);
     microphone.position.x = 0;
     microphone.position.y = -100;
-    microphone.position.z = -95;
+    microphone.position.z = 5;
 
     source = new THREE.Mesh(source_geometry, source_material);
     source.position.x = 0;
     source.position.y = 100;
-    source.position.z = -95;
+    source.position.z = 5;
 
     //COLUMNAS
     cylinder_11 = new THREE.Mesh(cylinder_geometry, cylinder_material);
@@ -164,22 +168,22 @@ function addMesh() {
 
     cylinder_11.position.x = 200;
     cylinder_11.position.y = 108;
-    cylinder_11.position.z = -81;
+    cylinder_11.position.z = 19;
     cylinder_11.rotation.x = Math.PI/2;
 
     cylinder_12.position.x = 200;
     cylinder_12.position.y = -108;
-    cylinder_12.position.z = -81;
+    cylinder_12.position.z = 19;
     cylinder_12.rotation.x = Math.PI/2;
 
     cylinder_21.position.x = -200;
     cylinder_21.position.y = 108;
-    cylinder_21.position.z = -81;
+    cylinder_21.position.z = 19;
     cylinder_21.rotation.x = Math.PI/2;
 
     cylinder_22.position.x = -200;
     cylinder_22.position.y = -108;
-    cylinder_22.position.z = -81;
+    cylinder_22.position.z = 19;
     cylinder_22.rotation.x = Math.PI/2;
 
     // Finally, add to the scene
@@ -207,23 +211,61 @@ function getElementPosition(name, type) {
   addNewMesh(type, name, position);
 }
 
+function checkIfElementIsAdded(name) {
+  var ret = false
+  for (var i = 0; i < scene.children.length; i++) {
+    if (scene.children[i].name === name) {
+      ret = i
+      break;
+    }
+  }
+  return ret
+}
+
 function addNewMesh(type, name, position) {
+  console.log("type", type);
+  console.log("name", name);
   console.log("position", position);
   var newElement;
-  switch (type) {
-    case 'SOURCE':
-      newElement = new THREE.Mesh(source_geometry, source_material);
-      newElement.position.x = position[0]
-      newElement.position.y = position[1]
-      newElement.position.z = position[2]
-      break;
-    default:
-      newElement = new THREE.Mesh(microphone_geometry, microphone_material);
-      newElement.position.x = position[0]
-      newElement.position.y = position[1]
-      newElement.position.z = position[2]
+  var isAdded = checkIfElementIsAdded(name)
+  if (isAdded) {
+    scene.children[isAdded].position.x = position[0]
+    scene.children[isAdded].position.y = position[1]
+    scene.children[isAdded].position.z = position[2]
+    scene.children[isAdded].name = name
+    console.log('MESH IS ALREADY ADDED');
+  } else {
+    switch (type) {
+      case 'SOURCE':
+        newElement = new THREE.Mesh(source_geometry, source_material);
+        newElement.position.x = position[0]
+        newElement.position.y = position[1]
+        newElement.position.z = position[2]
+        newElement.name = name
+        break;
+      default:
+        newElement = new THREE.Mesh(microphone_geometry, microphone_material);
+        newElement.position.x = position[0]
+        newElement.position.y = position[1]
+        newElement.position.z = position[2]
+        newElement.name = name
+    }
+    newElement.castShadow = true;
+    newElement.receiveShadow = true;
+    scene.add(newElement);
+    console.log('addNewMesh SCENE', scene);
   }
-  scene.add(newElement);
+  requestAnimationFrame(draw);
+}
+
+function deleteMesh(name) {
+  for (var i = 0; i < scene.children.length; i++) {
+    if (scene.children[i].name === name) {
+      scene.remove(scene.children[i]);
+      break;
+    }
+  }
+  console.log('deleteMesh SCENE', scene);
 }
 
 function addLight() {
@@ -258,7 +300,7 @@ function addLight() {
     rightWall.receiveShadow = true;
 
     // Set its position
-    spotLight.position.set(0, 0, 150)
+    spotLight.position.set(0, 0, 250)
     //spotLight.position.x = 0;
     //spotLight.position.y = 0;
     //spotLight.position.z = 150;
@@ -270,12 +312,12 @@ function addLight() {
 mediaCondition.onchange = (e) => {
   if (e.matches) {
     WIDTH = 960;
-    camera.position.y = -440;
-    camera.position.z = 30;
+    camera.position.y = -340;
+    camera.position.z = 130;
   } else {
     WIDTH = 1280;
-    camera.position.y = -400;
-    camera.position.z = 90;
+    camera.position.y = -300;
+    camera.position.z = 190;
   }
   renderer.setSize(WIDTH, HEIGHT);
   requestAnimationFrame(draw);
@@ -285,8 +327,4 @@ function draw() {
   camera.lookAt( scene.position );
   renderer.render(scene, camera);
   requestAnimationFrame(draw);
-}
-
-function removeSceneObject(object) {
-  scene.remove(object.name);
 }
