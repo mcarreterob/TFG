@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu Mono' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="three.js"></script>
+    <script type="text/javascript" src="scene.js"></script>
+    <title></title>
+  </head>
+  <body width="100%" onload="setup()">
+    <h1>ISO 16283-2: Aislamiento a ruido de impactos</h1>
+    <div class="grad1"></div>
+    <div class="source-positions-container">
+      <div class="source-position-input">
+        <button type="button" id="sourcePosition1" class="source-position-button primary-font medium-font-size" onclick="loadPositionInputs(this.id)">Posición de fuente 1</button>
+      </div>
+      <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button add-source-position" onclick="addNewSourcePosition()"><i class="fa fa-plus"></i></button>
+    </div>
+    <div class="space">
+      <p id="question" class="question-text">
+        Introduzca las coordenadas [cm] de los elementos, teniendo en cuenta que el centro del suelo del recinto es el origen y que las dimensiones del recinto son 600x400x250 cm.
+      </p>
+      <div class="scene-inputs-container">
+        <div class="scene-inputs">
+          <div>
+            Posición de la fuente
+          </div>
+          <div class="source-input">
+            Coordenada X <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-300" max="300">
+            Coordenada Y <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-200" max="200">
+            Altura <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="0" max="300">
+            <button type="button" id="source1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id, 'SOURCE')"> Añadir </button>
+            <button type="button" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh('source1')"><i class="fa fa-trash"></i></button>
+          </div>
+          <div class="mic-position-title">
+            Posiciones de micrófono
+          </div>
+          <div class="microphone-input">
+              Coordenada X <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="-300" max="300">
+              Coordenada Y <input type="number" id="elem1" name="mic1" class="primary-font medium-font-size coords" min="-200" max="200">
+              Altura <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="0" max="300">
+              <button type="button" id="mic1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id)"> Añadir </button>
+              <button type="button" id="mic1" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh(this.id)"><i class="fa fa-trash"></i></button>
+          </div>
+          <button type="button" id="addMore" class="primary-font medium-font-size add-more-button" onclick="addNewElement()"><i class="fa fa-plus"></i></button>
+        </div>
+        <div id="scene-modal" class="modal">
+          <div id="dynamicData" class="scene"></div>
+        </div>
+      </div>
+    </div>
+    <button class="scene-button primary-font medium-font-size" onclick="showScene()">Escena 3D</button>
+    <!-- <button class="prev-button" onclick="getPrevious()"><i class="fa fa-chevron-left"></i></button>
+    <button id="next" class="next-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button> -->
+  </body>
+</html>

@@ -5,7 +5,9 @@ var index = 0,
     firstLoad = true,
     fromProgress = false,
     end = false,
-    coordInputs = 2;
+    coordInputs = 2,
+    sourcePositionInputs = 2,
+    sceneData = [];
 
 function init(){
   insertQuestion(data, index);
@@ -285,15 +287,41 @@ function showScene() {
 }
 
 function addNewElement() {
-  var tpl = '<div class="scene-input">'
-          + ' Coordenada X <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="-300" max="300">'
-          + ' Coordenada Y <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="-200" max="200">'
-          + ' Altura <input type="number" id="elem' + coordInputs + '" name="elem' + coordInputs + '" class="primary-font medium-font-size coords" min="0" max="300">'
-          + ' <button type="button" class="primary-font medium-font-size add-element-button"'
-          + ' onclick="getElementPosition(\'elem' + coordInputs + '\')"> Añadir </button>'
-          + ' <button type="button" class="primary-font medium-font-size remove-element-button"'
-          + ' onclick="deleteMesh(\'elem' + coordInputs + '\')"><i class="fa fa-trash"></i></button>'
+  var tpl = '<div class="microphone-input">'
+          + ' Coordenada X <input type="number" id="mic' + coordInputs + '" name="mic' + coordInputs + '" class="primary-font medium-font-size coords" min="-300" max="300">'
+          + ' Coordenada Y <input type="number" id="mic' + coordInputs + '" name="mic' + coordInputs + '" class="primary-font medium-font-size coords" min="-200" max="200">'
+          + ' Altura <input type="number" id="mic' + coordInputs + '" name="mic' + coordInputs + '" class="primary-font medium-font-size coords" min="0" max="300">'
+          + ' <button type="button" id="mic' + coordInputs + '" class="primary-font medium-font-size add-element-button"'
+          + ' onclick="getElementPosition(this.id)"> Añadir </button>'
+          + ' <button type="button" id="mic' + coordInputs + '" class="primary-font medium-font-size remove-element-button"'
+          + ' onclick="deleteMesh(this.id)"><i class="fa fa-trash"></i></button>'
           + '</div>'
   document.getElementById("addMore").insertAdjacentHTML('beforebegin', tpl);
   coordInputs += 1;
+}
+
+function getElementPosition(name, type) {
+  var position = [],
+      inputsData;
+  if (name) {
+    inputsData = document.getElementsByName(name);
+    for (var i = 0; i < inputsData.length; i++) {
+      position.push(parseInt(inputsData[i].value))
+    }
+  }
+  console.log(position);
+  addNewMesh(type, name, position);
+}
+
+function storeSceneData(elementName, position) {
+  var isAdded = checkIfElementIsAdded(elementName)
+}
+
+function addNewSourcePosition() {
+  console.log('addNewSourcePosition log');
+  var tpl = '<div class="source-position-input">'
+          + '<button type="button" id="sourcePosition' + sourcePositionInputs + '" class="source-position-button primary-font medium-font-size" onclick="loadPositionInputs(this.id)">Posición de fuente ' + sourcePositionInputs + '</button>'
+          + '</div>'
+  sourcePositionInputs += 1;
+  document.getElementById("addMoreSource").insertAdjacentHTML('beforebegin', tpl);
 }

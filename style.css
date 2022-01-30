@@ -9,20 +9,39 @@ body {
   font-family: 'Ubuntu Mono';
 }
 
-.scene-inputs {
+.scene-inputs-container {
   position: relative;
   top: 13vh;
+  left: 5vw;
   font-size: 1.4vw;
+  height: 57.5vh;
+  overflow: scroll;
 }
 
-.scene-input {
+.source-input {
+  position:relative;
+  top:2vh
+}
+
+.microphone-input {
+  position:relative;
+  top:6vh;
+  margin-bottom: 1.5vh
+}
+
+.mic-position-title {
+  position:relative;
+  top:4vh
+}
+
+.scene-inputs {
   position: relative;
   float: left;
   margin: 1vh 0 1vh 0;
 }
 
 .coords {
-  width: 2.7vw;
+  width: 3.5vw;
   margin-right: 5vw
 }
 
@@ -80,11 +99,14 @@ body {
   bottom: 4vh;
   left: 45.7vw;
   border-radius: 0.2vw;
-  background-color: white;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
 }
 
 .prev-button:hover {
   background-color: #f44336;
+  border-color: #f44336;
   color: white;
   cursor: pointer;
 }
@@ -98,7 +120,9 @@ body {
   bottom: 4vh;
   left: 53vw;
   border-radius: 0.2vw;
-  background-color: white;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
 }
 
 .transition-button {
@@ -107,6 +131,7 @@ body {
 
 .next-button:hover {
   background-color: #f44336;
+  border-color: #f44336;
   color: white;
   cursor: pointer;
 }
@@ -356,7 +381,7 @@ h1 {
   position: relative; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 18.35vh; /* Location of the box */
-  left: 15vw;
+  left: 17%;
   bottom: 18vh;
   width: 100%; /* Full width */
   height: 72vh; /* Full height */
@@ -365,19 +390,21 @@ h1 {
 
 .scene-button {
   font-size: 1.1vw;
-  /* padding: top right bottom left; */
   padding: 0.2vw 0.5vw 0.1vw 0.4vw;
   color: black;
   position: absolute;
   bottom: 4vh;
   left: 45.7vw;
   border-radius: 0.2vw;
-  background-color: white;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
   z-index: 10
 }
 
 .scene-button:hover {
   background-color: #f44336;
+  border-color: #f44336;
   color: white;
   cursor: pointer;
 }
@@ -385,17 +412,81 @@ h1 {
 .add-element-button {
   position: relative;
   margin-right: 2vw;
-  padding: 0.2vw 0.3vw 0.1vw 0.3vw
+  padding: 0.2vw 0.3vw 0.1vw 0.3vw;
+  border-radius: 0.2vw;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
+}
+
+.add-element-button:hover {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: pointer;
 }
 
 .remove-element-button {
   position: relative;
-  padding: 0.2vw 0.3vw 0.1vw 0.3vw
+  padding: 0.2vw 0.3vw 0.1vw 0.3vw;
+  border-radius: 0.2vw;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
+}
+
+.remove-element-button:hover {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: pointer;
 }
 
 .add-more-button {
   position: relative;
   float: left;
-  right: 58.5vw;
-  top: 6vh
+  top: 7vh;
+  border-radius: 0.2vw;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
+}
+
+.add-more-button:hover {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+.add-source-position {
+  top: 1vh;
+}
+
+.source-position-button {
+  font-size: 1.1vw;
+  padding: 0.2vw 0.5vw 0.1vw 0.4vw;
+  color: black;
+  position: relative;
+  border-radius: 0.2vw;
+  background-color: #eeeeee;
+  border-style: double;
+  border-color: #999999;
+}
+.source-position-button:hover {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: pointer;
+}
+
+.source-position-input {
+  position: relative;
+  margin-bottom: 2vh;
+}
+
+.source-positions-container {
+  position: relative;
+  top: 28vh;
+  left: 2vw;
 }

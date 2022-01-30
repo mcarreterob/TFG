@@ -65,8 +65,8 @@ function createScene() {
             FAR
         );
 
-    camera.position.y = mediaCondition.matches ? -340 : -300 /*-500 : -350*/;
-    camera.position.z = 190;
+    camera.position.y = mediaCondition.matches ? -340 : -290 /*-500 : -350*/;
+    camera.position.z = 230;
 
     scene = new THREE.Scene();
 
@@ -115,14 +115,6 @@ function addMesh() {
         color: 0xFF0000
       });
 
-    //COLUMNAS
-    var column_texture = new THREE.TextureLoader().load('/textures/textura-madera.png');
-    var cylinder_geometry = new THREE.CylinderGeometry( 8, 8, 40, 32 );
-    var cylinder_material = new THREE.MeshLambertMaterial(
-      {
-        map: column_texture
-      });
-
     // Create a new mesh
 
     floor = new THREE.Mesh(plane_geometry, floor_material);
@@ -150,65 +142,11 @@ function addMesh() {
     rightWall.rotation.x = Math.PI/2;
     rightWall.rotation.y = -Math.PI/2;
 
-    microphone = new THREE.Mesh(microphone_geometry, microphone_material);
-    microphone.position.x = 0;
-    microphone.position.y = -100;
-    microphone.position.z = 5;
-
-    source = new THREE.Mesh(source_geometry, source_material);
-    source.position.x = 0;
-    source.position.y = 100;
-    source.position.z = 5;
-
-    //COLUMNAS
-    cylinder_11 = new THREE.Mesh(cylinder_geometry, cylinder_material);
-    cylinder_12 = new THREE.Mesh(cylinder_geometry, cylinder_material);
-    cylinder_21 = new THREE.Mesh(cylinder_geometry, cylinder_material);
-    cylinder_22 = new THREE.Mesh(cylinder_geometry, cylinder_material);
-
-    cylinder_11.position.x = 200;
-    cylinder_11.position.y = 108;
-    cylinder_11.position.z = 19;
-    cylinder_11.rotation.x = Math.PI/2;
-
-    cylinder_12.position.x = 200;
-    cylinder_12.position.y = -108;
-    cylinder_12.position.z = 19;
-    cylinder_12.rotation.x = Math.PI/2;
-
-    cylinder_21.position.x = -200;
-    cylinder_21.position.y = 108;
-    cylinder_21.position.z = 19;
-    cylinder_21.rotation.x = Math.PI/2;
-
-    cylinder_22.position.x = -200;
-    cylinder_22.position.y = -108;
-    cylinder_22.position.z = 19;
-    cylinder_22.rotation.x = Math.PI/2;
-
     // Finally, add to the scene
     scene.add(floor);
     scene.add(frontWall);
     scene.add(leftWall);
     scene.add(rightWall);
-    scene.add(microphone);
-    scene.add(source);
-    scene.add(cylinder_11);
-    scene.add(cylinder_12);
-    scene.add(cylinder_21);
-    scene.add(cylinder_22);
-}
-
-function getElementPosition(name, type) {
-  var position = [],
-      inputsData;
-  if (name) {
-    inputsData = document.getElementsByName(name);
-    for (var i = 0; i < inputsData.length; i++) {
-      position.push(parseInt(inputsData[i].value))
-    }
-  }
-  addNewMesh(type, name, position);
 }
 
 function checkIfElementIsAdded(name) {
@@ -280,30 +218,12 @@ function addLight() {
     floor.castShadow = true;
     floor.receiveShadow = true;
 
-    microphone.castShadow = true;
-    microphone.receiveShadow = true;
-
-    source.castShadow = true;
-
-    cylinder_11.receiveShadow = true;
-    cylinder_12.receiveShadow = true;
-    cylinder_21.receiveShadow = true;
-    cylinder_22.receiveShadow = true;
-
-    cylinder_11.castShadow = true;
-    cylinder_12.castShadow = true;
-    cylinder_21.castShadow = true;
-    cylinder_22.castShadow = true;
-
     frontWall.receiveShadow = true;
     leftWall.receiveShadow = true;
     rightWall.receiveShadow = true;
 
     // Set its position
-    spotLight.position.set(0, 0, 250)
-    //spotLight.position.x = 0;
-    //spotLight.position.y = 0;
-    //spotLight.position.z = 150;
+    spotLight.position.set(0, 0, 300)
 
     // Add to the scene
     scene.add(spotLight);
