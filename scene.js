@@ -80,7 +80,6 @@ function createScene() {
 }
 
 function addMesh() {
-  console.log('addMesh');
     //PLANOS
     var plane_geometry = new THREE.PlaneGeometry(
       PLANE_WIDTH,
@@ -161,9 +160,6 @@ function checkIfElementIsAdded(name) {
 }
 
 function addNewMesh(type, name, position) {
-  console.log("type", type);
-  console.log("name", name);
-  console.log("position", position);
   var newElement;
   var isAdded = checkIfElementIsAdded(name)
   if (isAdded) {
@@ -191,12 +187,12 @@ function addNewMesh(type, name, position) {
     newElement.castShadow = true;
     newElement.receiveShadow = true;
     scene.add(newElement);
-    console.log('addNewMesh SCENE', scene);
   }
   requestAnimationFrame(draw);
 }
 
 function deleteMesh(name) {
+  console.log('DELETE MESH name: ', name);
   for (var i = 0; i < scene.children.length; i++) {
     if (scene.children[i].name === name) {
       scene.remove(scene.children[i]);
@@ -204,6 +200,16 @@ function deleteMesh(name) {
     }
   }
   console.log('deleteMesh SCENE', scene);
+}
+
+function emptyScene(sourcePosition) {
+  deleteMesh('source1')
+  while (index !== -1) {
+    var index = scene.children.findIndex( (index) => (index.name).includes('mic'))
+    if (index !== -1) {
+      deleteMesh(scene.children[index].name)
+    }
+  }
 }
 
 function addLight() {

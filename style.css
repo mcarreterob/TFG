@@ -490,3 +490,7 @@ h1 {
   top: 28vh;
   left: 2vw;
 }
+
+.save-button {
+  left: 10px;
+}

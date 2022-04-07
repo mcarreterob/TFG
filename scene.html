@@ -25,37 +25,52 @@
       <p id="question" class="question-text">
         Introduzca las coordenadas [cm] de los elementos, teniendo en cuenta que el centro del suelo del recinto es el origen y que las dimensiones del recinto son 600x400x250 cm.
       </p>
-      <div class="scene-inputs-container">
-        <div class="scene-inputs">
+      <div class="scene-inputs-container" id="scene-inputs-container">
+        <div class="scene-inputs" id="scene-inputs">
           <div>
             Posición de la fuente
           </div>
           <div class="source-input">
-            Coordenada X <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-300" max="300">
-            Coordenada Y <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-200" max="200">
-            Altura <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="0" max="300">
-            <button type="button" id="source1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id, 'SOURCE')"> Añadir </button>
+            Coordenada X <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-300" max="300" value="0" value="0" onkeyup="enforceMinMax(this)">
+            Coordenada Y <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="-200" max="200" value="0" onkeyup="enforceMinMax(this)">
+            Altura <input type="number" id="source1" name="source1" class="primary-font medium-font-size coords" min="0" max="300" value="0" onkeyup="enforceMinMax(this)">
+            <button type="button" id="source1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id, 'SOURCE', 'sourcePosition1')"> Añadir </button>
             <button type="button" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh('source1')"><i class="fa fa-trash"></i></button>
           </div>
           <div class="mic-position-title">
             Posiciones de micrófono
           </div>
-          <div class="microphone-input">
-              Coordenada X <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="-300" max="300">
-              Coordenada Y <input type="number" id="elem1" name="mic1" class="primary-font medium-font-size coords" min="-200" max="200">
-              Altura <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="0" max="300">
-              <button type="button" id="mic1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id)"> Añadir </button>
+          <div class="microphone-input" id="microphone-input">
+              Coordenada X <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="-300" max="300" value="0" onkeyup="enforceMinMax(this)">
+              Coordenada Y <input type="number" id="elem1" name="mic1" class="primary-font medium-font-size coords" min="-200" max="200" value="0" onkeyup="enforceMinMax(this)">
+              Altura <input type="number" id="mic1" name="mic1" class="primary-font medium-font-size coords" min="0" max="300" value="0" onkeyup="enforceMinMax(this)">
+              <button type="button" id="mic1" class="primary-font medium-font-size add-element-button" onclick="getElementPosition(this.id, 'MIC', 'sourcePosition1')"> Añadir </button>
               <button type="button" id="mic1" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh(this.id)"><i class="fa fa-trash"></i></button>
           </div>
-          <button type="button" id="addMore" class="primary-font medium-font-size add-more-button" onclick="addNewElement()"><i class="fa fa-plus"></i></button>
+          <button type="button" id="addMore" class="primary-font medium-font-size add-more-button" onclick="addNewElement()">
+            <i class="fa fa-plus"></i>
+          </button>
+          <button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="saveAndCheckPositions()">
+            <i class="far fa-save"></i>
+          </button>
         </div>
         <div id="scene-modal" class="modal">
           <div id="dynamicData" class="scene"></div>
         </div>
       </div>
     </div>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p class="big-font-size modal-text">Resultado:</p>
+        <p id="modalResult" class="modal-result"></p>
+        <p id="passed" class="big-font-size passed-color passed-text">Enhorabuena, has superado la prueba con éxito.</p>
+        <p id="failed" class="big-font-size failed-color failed-text">Lo siento, no has pasado el corte. Debes contestar correctamente al menos al 80% de las preguntas.</p>
+      </div>
+    </div>
     <button class="scene-button primary-font medium-font-size" onclick="showScene()">Escena 3D</button>
-    <!-- <button class="prev-button" onclick="getPrevious()"><i class="fa fa-chevron-left"></i></button>
-    <button id="next" class="next-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button> -->
+    <button style="left:100px"class="prev-button" onclick="showModal()"><i class="fa fa-chevron-left"></i></button>
+    <!-- <button id="next" class="next-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button> -->
   </body>
 </html>
