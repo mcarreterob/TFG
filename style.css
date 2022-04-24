@@ -365,12 +365,31 @@ h1 {
   margin: 4vh 2vw 4vh 2vw;
 }
 
+.passed-scene-text {
+  margin-top: 8vh !important;
+  line-height: 4vh;
+}
+
 .failed-text {
   display: none;
   position: relative;
   top: 4.5vh;
   text-align: center;
   margin: 4vh 2vw 4vh 2vw;
+}
+
+.failed-scene-text {
+  padding-bottom:3.5vh;
+}
+
+ul {
+  line-height:4vh;
+  text-align:left !important;
+}
+
+li {
+  position:relative;
+  bottom: 3vh;
 }
 
 .failed-color {
@@ -425,6 +444,12 @@ h1 {
   color: white;
   cursor: pointer;
 }
+.add-element-button:disabled {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: default;
+}
 
 .remove-element-button {
   position: relative;
@@ -440,6 +465,12 @@ h1 {
   border-color: #f44336;
   color: white;
   cursor: pointer;
+}
+.remove-element-button:disabled {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: default;
 }
 
 .add-more-button {
@@ -458,6 +489,12 @@ h1 {
   color: white;
   cursor: pointer;
 }
+.add-more-button:disabled {
+  background-color: #f44336;
+  border-color: #f44336;
+  color: white;
+  cursor: default;
+}
 
 .add-source-position {
   top: 1vh;
@@ -474,10 +511,16 @@ h1 {
   border-color: #999999;
 }
 .source-position-button:hover {
+  /* background-color: #f44336; */
+  border-color: #f44336;
+  /* color: white; */
+  cursor: pointer;
+}
+.source-position-button:disabled {
   background-color: #f44336;
   border-color: #f44336;
   color: white;
-  cursor: pointer;
+  cursor: default;
 }
 
 .source-position-input {
@@ -493,4 +536,8 @@ h1 {
 
 .save-button {
   left: 10px;
+}
+
+.end-button {
+  right: 2vw;
 }

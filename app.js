@@ -8,11 +8,14 @@ var index = 0,
     coordInputs = 2,
     sourcePositionInputs = 2,
     sceneData = [],
-    checkedPosition = false;
+    checkedPosition = false,
+    currentSourcePosition = 1,
+    randomQuestions = [];
 
 function init(){
   insertQuestion(data, index);
   insertAnswer(index);
+  getRandomQuestions();
   var questNumber;
   for (var i = 0; i < data.length; i++) {
     questNumber = i + 1;
@@ -20,6 +23,18 @@ function init(){
     document.getElementById("dropdownContent").insertAdjacentHTML('beforeend', tpl);
   }
   firstLoad = false;
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomQuestions() {
+  for (var i = 0; i === 6; i++) {
+    console.log(getRandomInt(0, 11))
+  }
 }
 
 function saveAnswer(answer) {
@@ -266,6 +281,10 @@ function closeModal() {
   insertAnswer(index);
 }
 
+function closeSceneResultsModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
 function getPrevious() {
   if(index > 0) {
     document.getElementById('dynamicData').innerHTML = '';
@@ -356,18 +375,18 @@ function storeSceneData(type, elementName, position, sourcePosition, reloadInput
 }
 
 function loadPositionInputs(sourcePosition) {
-  coordInputs = 1;
-  if (sceneData[sourcePosition]) {
-    console.log('THERE IS INFO ABOUT ', sourcePosition, sceneData[sourcePosition]);
-    // console.log('cantidad de mics', sceneData[sourcePosition].mics.length);
-    emptyPositionInputs()
-    emptyScene(sourcePosition)
-    getPositionInputsData(sourcePosition, true)
-  } else {
+  coordInputs = 2;
+  // if (sceneData[sourcePosition]) {
+  //   console.log('THERE IS INFO ABOUT ', sourcePosition, sceneData[sourcePosition]);
+  //   // console.log('cantidad de mics', sceneData[sourcePosition].mics.length);
+  //   emptyPositionInputs()
+  //   // emptyScene(sourcePosition)
+  //   getPositionInputsData(sourcePosition, true)
+  // } else {
     emptyScene(sourcePosition)
     console.log('THERE IS NO INFO ABOUT ', sourcePosition);
     resetPositionInputs(sourcePosition)
-  }
+  // }
   console.log('loadPositionInputs sceneData', sceneData);
 }
 
@@ -387,7 +406,7 @@ function getPositionInputsData(sourcePosition) {
   + '   <button type="button" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh(\'source1\')"><i class="fa fa-trash"></i></button>'
   + ' </div><div class="mic-position-title">Posiciones de micrófono</div>'
   + ' <button type="button" id="addMore" class="primary-font medium-font-size add-more-button" onclick="addNewElement()"><i class="fa fa-plus"></i></button>'
-  + '<button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="addNewElement()"><i class="far fa-save"></i></button>'
+  + '<button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="saveAndCheckPositions()"><i class="far fa-save"></i></button>'
   document.getElementById('scene-inputs-container').insertAdjacentHTML('afterbegin', tpl)
   var micsLength = sceneData[sourcePosition].mics.length
   //console.log('sourcePosition', sceneData[sourcePosition], 'micsLength', micsLength);
@@ -421,7 +440,7 @@ function resetPositionInputs(sourcePosition) {
   + '     <button type="button" id="mic1" class="primary-font medium-font-size remove-element-button" onclick="deleteMesh(this.id)"><i class="fa fa-trash"></i></button>'
   + ' </div>'
   + ' <button type="button" id="addMore" class="primary-font medium-font-size add-more-button" onclick="addNewElement()"><i class="fa fa-plus"></i></button>'
-  + '<button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="addNewElement()"><i class="far fa-save"></i></button>'
+  + '<button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="saveAndCheckPositions()"><i class="far fa-save"></i></button>'
   + '</div>'
   emptyPositionInputs()
   document.getElementById('scene-inputs-container').insertAdjacentHTML('afterbegin', tpl)
@@ -434,31 +453,120 @@ function addNewSourcePosition() {
     var tpl = '<div class="source-position-input">'
             + '<button type="button" id="sourcePosition' + sourcePositionInputs + '" class="source-position-button primary-font medium-font-size" onclick="loadPositionInputs(this.id)">Posición de fuente ' + sourcePositionInputs + '</button>'
             + '</div>'
-    sourcePositionInputs += 1;
     document.getElementById("addMoreSource").insertAdjacentHTML('beforebegin', tpl);
+    loadPositionInputs('sourcePosition' + sourcePositionInputs)
+    sourcePositionInputs += 1;
   } else {
     alert("Para añadir una posición nueva, primero debes guardar los datos de la posición en la que te encuentras. Ten en cuenta que, al hacerlo, se evaluarán y no podrás volver a modificarlos.")
   }
 }
 
 function getDistance(coord1, coord2) {
-  return Math.sqrt((coord2[0] - coord1[0]) ** 2 + (coord2[1] - coord1[1]) ** 2 + (coord2[2] - coord1[2]) ** 2)
+  return (Math.sqrt((coord2[0] - coord1[0]) ** 2 + (coord2[1] - coord1[1]) ** 2 + (coord2[2] - coord1[2]) ** 2)).toFixed(2)
 }
 
 function saveAlert() {
   return confirm("¿Estás seguro de que quieres terminar esta posición? Si confirmas, serán evaluados los datos introducidos y no podrán volver a ser modificados.")
 }
 
+function distancesFromTheLimitsAreOk(coords) {
+  console.log(coords);
+  if ((coords[0] < -250 || coords[0] > 250) || (coords[1] < -150 || coords[1] > 150)
+      || (coords[2] < 50 || coords[2] > 200) ) {
+        return false
+  } else {
+    return true
+  }
+}
+
 function saveAndCheckPositions() {
+  var badPositioning = false
   if (saveAlert()) {
     checkedPosition = true
     if (!sceneData.source || !sceneData.mics) {
-      alert("No has introducido datos suficientes.")
+      document.getElementById("failed").style.display = "block";
+      document.getElementById("failReasons").style.display = "block";
     } else {
-      console.log(getDistance(sceneData.source, sceneData.mics[0]))
+      if (sceneData.mics.length >= 2) {
+        for (var i = 0; i < sceneData.mics.length; i++) {
+          if (!distancesFromTheLimitsAreOk(sceneData.mics[i])) {
+                console.log('badPositioning: too close to the limits');
+                badPositioning = true
+          }
+          if (!badPositioning) {
+            if (getDistance(sceneData.mics[i], sceneData.source) < 100) {
+              console.log('badPositioning: too close to the source');
+              badPositioning = true
+            }
+            for (var j = 0; j < sceneData.mics.length; j++) {
+              if (i !== j) {
+                if (getDistance(sceneData.mics[i], sceneData.mics[j]) < 70) {
+                  console.log('badPositioning: too close to other mic position');
+                  badPositioning = true
+                }
+              }
+            }
+          }
+        }
+      } else {
+        console.log('badPositioning: not enough');
+        badPositioning = true
+      }
+      console.log('badPositioning', badPositioning);
+      if (!distancesFromTheLimitsAreOk(sceneData.source) || badPositioning) {
+        document.getElementById("failed").style.display = "block";
+        document.getElementById("failReasons").style.display = "block";
+        console.log("Alguno(s) de los elementos que has situado no estaban a la distancia correcta de los límites del recinto");
+      } else {
+        document.getElementById("passed").style.display = "block";
+      }
     }
+    var inputs = document.getElementsByTagName('input')
+    for (var j = 0; j < inputs.length; j++) {
+      inputs[j].disabled = true
+    }
+    showModal()
+    // document.getElementById('sourcePosition' + currentSourcePosition).disabled = true
+    // const elementsAdded = document.getElementsByClassName('add-element-button')
+    // for (var i = 0; i < elementsAdded.length; i++) {
+    //   elementsAdded[i].disabled = true
+    //   document.getElementsByClassName('remove-element-button')[i].disabled = true
+    // }
+    // document.getElementsByClassName('remove-element-button')[0].disabled = true
+    // document.getElementById('addMore').disabled = true
+    // document.getElementById('save').disabled = true
+    disableSceneInputs()
+    sceneData = []
+    currentSourcePosition ++
   } else {
     null
+  }
+}
+
+function disableSceneInputs() {
+  document.getElementById('sourcePosition' + currentSourcePosition).disabled = true
+  const elementsAdded = document.getElementsByClassName('add-element-button')
+  for (var i = 0; i < elementsAdded.length; i++) {
+    elementsAdded[i].disabled = true
+    document.getElementsByClassName('remove-element-button')[i].disabled = true
+  }
+  document.getElementsByClassName('remove-element-button')[0].disabled = true
+  document.getElementById('addMore').disabled = true
+  document.getElementById('save').disabled = true
+}
+
+function endAlert() {
+  confirm('¿Estás seguro que quieres terminar el caso práctico?')
+}
+
+function end() {
+  if (checkedPosition) {
+    if (endAlert()) {
+      disableSceneInputs()
+      /* MOSTRARÁ POPUP CON RESULTADOS FINALES GENERALES (?) */
+    }
+  } else {
+    alert("Para terminar el caso práctico, primero debes guardar los datos de la posición en la que te encuentras. Ten en cuenta que, al hacerlo, se evaluarán y no podrás volver a modificarlos.")
   }
 }
 

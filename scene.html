@@ -20,6 +20,7 @@
         <button type="button" id="sourcePosition1" class="source-position-button primary-font medium-font-size" onclick="loadPositionInputs(this.id)">Posición de fuente 1</button>
       </div>
       <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button add-source-position" onclick="addNewSourcePosition()"><i class="fa fa-plus"></i></button>
+      <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button end-button" onclick="end()">Terminar</button>
     </div>
     <div class="space">
       <p id="question" class="question-text">
@@ -62,15 +63,22 @@
     <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p class="big-font-size modal-text">Resultado:</p>
-        <p id="modalResult" class="modal-result"></p>
-        <p id="passed" class="big-font-size passed-color passed-text">Enhorabuena, has superado la prueba con éxito.</p>
-        <p id="failed" class="big-font-size failed-color failed-text">Lo siento, no has pasado el corte. Debes contestar correctamente al menos al 80% de las preguntas.</p>
+        <span class="close" onclick="closeSceneResultsModal()">&times;</span>
+        <p id="passed" class="big-font-size passed-color passed-text passed-scene-text">
+          Los elementos están bien posicionados y cumplen con lo especificado en la norma. Puedes continuar a la siguiente posición de fuente.
+        </p>
+        <p id="failed" class="big-font-size failed-color failed-text failed-scene-text">
+          No has añadido suficientes elementos o alguno(s) de los elementos no están situados correctamente. Puede ser debido a:
+          <ul id="failReasons" class="medium-font-size failed-color failed-text">
+            <li>Distancia incorrecta con respecto a los límites del recinto</li>
+            <li>Distancia incorrecta de la posición de micrófono con respecto al área de excitación de la fuente</li>
+            <li>Distancia incorrecta entre posiciones de micrófono</li>
+          </ul>
+        </p>
       </div>
     </div>
     <button class="scene-button primary-font medium-font-size" onclick="showScene()">Escena 3D</button>
-    <button style="left:100px"class="prev-button" onclick="showModal()"><i class="fa fa-chevron-left"></i></button>
+    <!-- <button style="left:100px"class="prev-button" onclick="showModal()"><i class="fa fa-chevron-left"></i></button> -->
     <!-- <button id="next" class="next-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button> -->
   </body>
 </html>
