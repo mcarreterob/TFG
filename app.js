@@ -32,9 +32,66 @@ function getRandomInt(min, max) {
 }
 
 function getRandomQuestions() {
-  for (var i = 0; i === 6; i++) {
-    console.log(getRandomInt(0, 11))
+  var numbers = []
+  var maxRetries = 6
+  // BINARY
+  for (var i = 0; i < 6; i++) {
+    var randInt = getRandomInt(0, 11)
+    if (numbers.findIndex(number => number === randInt) !== -1) {
+      for (var j = 0; j < maxRetries; j++) {
+        randInt = getRandomInt(0, 11)
+        if (numbers.findIndex(number => number === randInt) === -1) {
+          break
+        }
+      }
+    }
+    numbers.push(randInt)
+    randomQuestions.push(binary[randInt])
   }
+  // OPEN
+  for (var i = 0; i < 1; i++) {
+    var randInt = getRandomInt(0, 1)
+    if (numbers.findIndex(number => number === randInt) !== -1) {
+      for (var j = 0; j < maxRetries; j++) {
+        randInt = getRandomInt(0, 1)
+        if (numbers.findIndex(number => number === randInt) === -1) {
+          break
+        }
+      }
+    }
+    numbers.push(randInt)
+    randomQuestions.push(open[randInt])
+  }
+  // MULTI
+  for (var i = 0; i < 1; i++) {
+    var randInt = getRandomInt(0, 1)
+    if (numbers.findIndex(number => number === randInt) !== -1) {
+      for (var j = 0; j < maxRetries; j++) {
+        randInt = getRandomInt(0, 1)
+        if (numbers.findIndex(number => number === randInt) === -1) {
+          break
+        }
+      }
+    }
+    numbers.push(randInt)
+    randomQuestions.push(multi[randInt])
+  }
+  // MULTI_BUTTONS
+  for (var i = 0; i < 1; i++) {
+    var randInt = getRandomInt(0, 1)
+    if (numbers.findIndex(number => number === randInt) !== -1) {
+      for (var j = 0; j < maxRetries; j++) {
+        randInt = getRandomInt(0, 1)
+        if (numbers.findIndex(number => number === randInt) === -1) {
+          break
+        }
+      }
+    }
+    numbers.push(randInt)
+    randomQuestions.push(multiButtons[randInt])
+  }
+  randomQuestions.push(number[0])
+  console.log(randomQuestions);
 }
 
 function saveAnswer(answer) {
