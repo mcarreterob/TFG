@@ -311,7 +311,7 @@ var data = [
   ];
 var binary = [
   {
-    "1": {
+    //"1": {
       "question": "La máquina de impactos se puede utilizar para una variedad de impactos leves o fuertes,"
                   + " mientras que la pelota de caucho para impactos pesados y suaves",
       "answerType": "BINARY",
@@ -320,10 +320,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Verdadero"
-    }
+    //}
   },
   {
-    "3": {
+    //"3": {
       "question": "El nivel de ruido de fondo, ¿en qué recinto debe ser medido?",
       "answerType": "BINARY",
       "numberAnswers": 2,
@@ -332,10 +332,10 @@ var binary = [
           "1": "Emisor"
       },
       "correctAnswer": "Receptor"
-    }
+    //}
   },
   {
-    "4": {
+    //"4": {
       "question": "El área de absorción equivalente se puede calcular utilizando la fórmula del TR de Sabine<br>"
                   + " (T = 0.161V/A) si y sólo si es el único elemento absorbente en el recinto.",
       "answerType": "BINARY",
@@ -344,10 +344,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Verdadero"
-    }
+    //}
   },
   {
-    "7": {
+    //"7": {
       "question": "En caso de que se considere necesario modificar el campo sonoro introduciendo de manera temporal "
                   + "mobiliario adicional o difusores dentro del recinto receptor, podríamos hacerlo como consideremos "
                   + "oportuno sin ningún tipo de restricción a tener en cuenta.",
@@ -357,10 +357,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Falso"
-    }
+    //}
   },
   {
-    "10": {
+    //"10": {
       "question": "'Las mediciones no deberían iniciarse hasta que el nivel de ruido se haya estabilizado. Si no se obtienen "
                   + "condiciones estables pasados 5 min, las mediciones deberían realizarse durante un período de medición "
                   + "bien definido.' ¿En qué caso se debe seguir este procedimiento?",
@@ -370,10 +370,10 @@ var binary = [
           "1": "Independencia temporal"
       },
       "correctAnswer": "Dependencia temporal"
-    }
+    //}
   },
   {
-    "11": {
+    //"11": {
       "question": "Utilizando posiciones fijas de micrófono, el operador puede o no estar presente en el recinto. En caso de estar "
                   + "presente, el tronco del cuerpo del operador debe permanecer a una distancia de al menos 2 metros desde el micrófono.",
       "answerType": "BINARY",
@@ -382,10 +382,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Falso"
-    }
+    //}
   },
   {
-    "12": {
+    //"12": {
       "question": "Según la norma, utilizando micrófono fijo para la máquina de impactos como fuente, se debe realizar el mismo número de "
                   + "mediciones para cada posición de la máquina de impactos y se debe realizar al menos una medición para "
                   + "cada posición de la máquina de impactos.",
@@ -395,10 +395,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Falso"
-    }
+    //}
   },
   {
-    "14": {
+    //"14": {
       "question": "El procedimiento de baja frecuencia se debe utilizar para bandas de 1/3 octava de 50 Hz, 63 Hz, 80 Hz y 125 Hz "
                   + "en el recinto receptor cuando su volumen es inferior a 25 metros cúbicos.",
       "answerType": "BINARY",
@@ -407,10 +407,10 @@ var binary = [
           "1": "Falso"
       },
       "correctAnswer": "Falso"
-    }
+    //}
   },
   {
-    "17": {
+    //"17": {
       "question": "Para el procedimiento de baja frecuencia, ¿es necesario medir el ruido de fondo en cada esquina utilizada "
                   + "para calcular los niveles de presión acústica de la esquina?",
       "answerType": "BINARY",
@@ -420,10 +420,10 @@ var binary = [
           "1": "No"
       },
       "correctAnswer": "Sí"
-    }
+    //}
   },
   {
-    "21": {
+    //"21": {
       "question": "En caso de que la diferencia entre el nivel de ruido de fondo y el nivel de señal+ruido de fondo sea inferior a 10dB pero "
                   + "superior a 6dB, ¿habría que calcular correcciones?",
       "answerType": "BINARY",
@@ -433,10 +433,10 @@ var binary = [
           "1": "No"
       },
       "correctAnswer": "Sí"
-    }
+    //}
   },
   {
-    "22": {
+    //"22": {
       "question": "En caso de que la diferencia entre el nivel de ruido de fondo y el nivel de señal+ruido de fondo sea inferior o igual a 6dB, "
                   + "¿es correcto corregir con 1,3dB en cualquier banda de frecuencia?",
       "answerType": "BINARY",
@@ -446,10 +446,10 @@ var binary = [
           "1": "No"
       },
       "correctAnswer": "Sí"
-    }
+    //}
   },
   {
-    "23": {
+    //"23": {
       "question": "Si hablamos de las mediciones del TR en el recinto receptor, ¿ejecutaría correctamente el procedimiento por defecto "
                   + "la siguiente secuencia de código?"
                   + "<img class='code-image' src='img/TR-recintoR-proc-defecto.png' alt='TR-codeseq'>",
@@ -461,22 +461,22 @@ var binary = [
           "1": "No"
       },
       "correctAnswer": "Sí"
-    }
+    //}
   }
 ]
 var open = [
   {
-    "2": {
+    //"2": {
       "question": "Según la norma, el tiempo de reverberación es el tiempo requerido por el nivel de presión"
                   + " acústica en un recinto para decrecer ciertos dB una vez haya cesado la fuente sonora."
                   + " ¿Cuántos decibelios tiene que decrecer?",
       "answerType": "OPEN",
       "units": "dB",
       "correctAnswer": "60"
-    }
+    //}
   },
   {
-    "9": {
+    //"9": {
       "question": "La excitación por parte de la pelota de caucho se debe realizar en cuatro o más posiciones diferentes, "
                   + "teniendo en cuenta las características de la superficie de ensayo. "
                   + "Para ello, la pelota debe dejarse caer verticalmente en "
@@ -484,12 +484,12 @@ var open = [
       "answerType": "OPEN",
       "units": "cm",
       "correctAnswer": "100"
-    }
+    //}
   }
 ]
 var multi = [
   {
-    "5": {
+    //"5": {
       "question": "Las mediciones que deben hacerse incluyen:",
       "answerType": "MULTI",
       "numberAnswers": 4,
@@ -508,10 +508,10 @@ var multi = [
                 + "apagada y los TR en el recinto receptor."
       },
       "correctAnswer": "possibleAnswer3"
-    }
+    //}
   },
   {
-    "6": {
+    //"6": {
       "question": "Si se requiere información adicional en el rango de frecuencias:",
       "answerType": "MULTI",
       "numberAnswers": 5,
@@ -523,12 +523,12 @@ var multi = [
           "4": "Ninguna de las anteriores."
       },
       "correctAnswer": "possibleAnswer3"
-    }
+    //}
   }
 ]
 var multiButtons = [
   {
-    "13": {
+    //"13": {
       "question": "¿Qué figura representa la trayectoria helicoidal?",
       "attachments": [
         "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
@@ -538,10 +538,10 @@ var multiButtons = [
       ],
       "answerType": "MULTI_BUTTONS",
       "correctAnswer": "multiBtn1"
-    }
+    //}
   },
   {
-    "18": {
+    //"18": {
       "question": "¿Qué figura representa la trayectoria cilíndrica?",
       "attachments": [
         "<img src='img/trayectoria1.png' alt='trayectoria1' class='image-button'>",
@@ -551,17 +551,17 @@ var multiButtons = [
       ],
       "answerType": "MULTI_BUTTONS",
       "correctAnswer": "multiBtn2"
-    }
+    //}
   }
 ]
 var number = [
   {
-    "16": {
+    //"16": {
       "question": "¿Cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
                   + "o de mano para cada posición de la fuente de impactos?",
       "answerType": "NUMBER",
       "units": "",
       "correctAnswer": "4"
-    }
+    //}
   }
 ]

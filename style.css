@@ -287,13 +287,15 @@ body {
 }
 
 .show {
-  height: 61vh;
+  height: 57.1vh;
 }
 
 .question-text {
   font-size: 1.4vw;
   line-height: 1.2;
   position: absolute;
+  top: 2vh;
+  left: 1vw;
 }
 
 .answer-text {
