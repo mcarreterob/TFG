@@ -61,7 +61,6 @@
       </div>
     </div>
     <div id="myModal" class="modal">
-      <!-- Modal content -->
       <div class="modal-content">
         <span class="close" onclick="closeSceneResultsModal()">&times;</span>
         <p id="passed" class="big-font-size passed-color passed-text passed-scene-text">
@@ -77,8 +76,20 @@
         </p>
       </div>
     </div>
+    <div id="endModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeSceneResultsModal()">&times;</span>
+        <p id="endPassed" class="big-font-size passed-color passed-text passed-scene-text">
+          ¡Enhorabuena! Has superado la evaluación con éxito.
+        </p>
+        <p id="failed1" class="big-font-size failed-color failed-text failed-scene-text">
+          La teoría la tienes, pero fallas a la hora de situar los puntos en el espacio.
+        </p>
+        <p id="failed2" class="big-font-size failed-color failed-text failed-scene-text">
+          Tienes que volver a leerte la norma. Parece que no lo tienes todo claro.
+        </p>
+      </div>
+    </div>
     <button class="scene-button primary-font medium-font-size" onclick="showScene()">Escena 3D</button>
-    <!-- <button style="left:100px"class="prev-button" onclick="showModal()"><i class="fa fa-chevron-left"></i></button> -->
-    <!-- <button id="next" class="next-button" onclick="getNext()"><i class="fa fa-chevron-right"></i></button> -->
   </body>
 </html>

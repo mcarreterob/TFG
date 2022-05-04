@@ -543,3 +543,17 @@ li {
 .end-button {
   right: 2vw;
 }
+
+.init-text {
+  width: 70vw;
+  font-size: 1.5vw;
+  line-height: 1.5;
+  position: absolute;
+  top: 20vh;
+  left: 15vw;
+  text-align: center;
+}
+
+.pre-scene-button {
+  top: 75vh !important;
+}

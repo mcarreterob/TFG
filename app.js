@@ -11,7 +11,9 @@ var index = 0,
     checkedPosition = false,
     currentSourcePosition = 1,
     randomQuestions = [],
-    numbers = [];
+    numbers = [],
+    badPositioningCount = 0,
+    passed = false;
 
 function init(){
   getRandomQuestions();
@@ -123,7 +125,11 @@ function selectFromProgress(questNumber) {
   insertAnswer(index);
   if (index === randomQuestions.length - 1) {
   //if (index === data.length - 1) {
-    document.getElementById("next").innerHTML = 'Terminar y salir <i class="fas fa-door-open"></i>';
+    if (end) {
+      document.getElementById("next").innerHTML = 'Pasar al caso práctico <i class="fas fa-door-open"></i>';
+    } else {
+      document.getElementById("next").innerHTML = 'Terminar y salir <i class="fas fa-door-open"></i>';
+    }
   } else {
     document.getElementById("next").innerHTML = '<i class="fa fa-chevron-right">';
   }
@@ -324,8 +330,8 @@ function getNext(){
 }
 
 function checkAnswers() {
-  var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(randomQuestions.length * 0.8), passed = false;;
-  //var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(data.length * 0.8), passed = false;;
+  var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(randomQuestions.length * 0.8);
+  //var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(data.length * 0.8);
   for (i; i < answers.length; i++) {
     questNumber = answers[i].questNumber;
     if (answers[i].answer === randomQuestions[questNumber - 1].correctAnswer) {
@@ -347,7 +353,7 @@ function checkAnswers() {
 }
 
 function generateModalContent(rightAnswers) {
-  var passed = false, limit = Math.round(randomQuestions.length * 0.8);
+  limit = Math.round(randomQuestions.length * 0.7);
   //var passed = false, limit = Math.round(data.length * 0.8);
   document.getElementById("modalResult").innerText= rightAnswers.length + '/' + randomQuestions.length;
   //document.getElementById("modalResult").innerText= rightAnswers.length + '/' + data.length;
@@ -586,17 +592,20 @@ function saveAndCheckPositions() {
           if (!distancesFromTheLimitsAreOk(sceneData.mics[i])) {
                 console.log('badPositioning: too close to the limits');
                 badPositioning = true
+                badPositioningCount++
           }
           if (!badPositioning) {
             if (getDistance(sceneData.mics[i], sceneData.source) < 100) {
               console.log('badPositioning: too close to the source');
               badPositioning = true
+              badPositioningCount++
             }
             for (var j = 0; j < sceneData.mics.length; j++) {
               if (i !== j) {
                 if (getDistance(sceneData.mics[i], sceneData.mics[j]) < 70) {
                   console.log('badPositioning: too close to other mic position');
                   badPositioning = true
+                  badPositioningCount++
                 }
               }
             }
@@ -605,6 +614,7 @@ function saveAndCheckPositions() {
       } else {
         console.log('badPositioning: not enough');
         badPositioning = true
+        badPositioningCount++
       }
       console.log('badPositioning', badPositioning);
       if (!distancesFromTheLimitsAreOk(sceneData.source) || badPositioning) {
@@ -653,11 +663,29 @@ function endAlert() {
   confirm('¿Estás seguro que quieres terminar el caso práctico?')
 }
 
+function endModal() {
+  if (passed) {
+      if (badPositioningCount < 3) {
+        console.log('PASSED');
+        document.getElementById("endModal").style.display = "block";
+        document.getElementById("endPassed").style.display = "block";
+      } else {
+          console.log('FAILED1, badPositioningCount ', badPositioningCount);
+          document.getElementById("endModal").style.display = "block";
+          document.getElementById("failed1").style.display = "block";
+      }
+  } else {
+      console.log('FAILED2, badPositioningCount ', badPositioningCount);
+      document.getElementById("endModal").style.display = "block";
+      document.getElementById("failed2").style.display = "block";
+  }
+}
+
 function end() {
   if (checkedPosition) {
     if (endAlert()) {
       disableSceneInputs()
-      /* MOSTRARÁ POPUP CON RESULTADOS FINALES GENERALES (?) */
+      endModal()
     }
   } else {
     alert("Para terminar el caso práctico, primero debes guardar los datos de la posición en la que te encuentras. Ten en cuenta que, al hacerlo, se evaluarán y no podrás volver a modificarlos.")
