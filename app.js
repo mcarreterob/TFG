@@ -353,11 +353,13 @@ function checkAnswers() {
 }
 
 function generateModalContent(rightAnswers) {
-  limit = Math.round(randomQuestions.length * 0.7);
+  limit = Math.round(randomQuestions.length * 0.1);
   //var passed = false, limit = Math.round(data.length * 0.8);
   document.getElementById("modalResult").innerText= rightAnswers.length + '/' + randomQuestions.length;
   //document.getElementById("modalResult").innerText= rightAnswers.length + '/' + data.length;
   passed = rightAnswers.length < limit ? false : true;
+  localStorage.setItem('passed', true)
+  console.log('PASSED', passed);
   if ( passed ) {
     document.getElementById("modalResult").classList.add("passed-color");
     document.getElementById("passed").style.display = "block";
@@ -379,6 +381,7 @@ function closeModal() {
 
 function closeSceneResultsModal() {
   document.getElementById("myModal").style.display = "none";
+  document.getElementById("endModal").style.display = "none";
 }
 
 function getPrevious() {
@@ -545,6 +548,7 @@ function resetPositionInputs(sourcePosition) {
 
 function addNewSourcePosition() {
   //console.log('addNewSourcePosition log');
+  console.log('PASSED', localStorage.getItem('passed'));
   if (checkedPosition) {
     checkedPosition = false
     document.getElementById("failed").style.display = "none";
@@ -556,6 +560,7 @@ function addNewSourcePosition() {
     document.getElementById("addMoreSource").insertAdjacentHTML('beforebegin', tpl);
     loadPositionInputs('sourcePosition' + sourcePositionInputs)
     sourcePositionInputs += 1;
+    currentSourcePosition ++
   } else {
     alert("Para añadir una posición nueva, primero debes guardar los datos de la posición en la que te encuentras. Ten en cuenta que, al hacerlo, se evaluarán y no podrás volver a modificarlos.")
   }
@@ -595,11 +600,6 @@ function saveAndCheckPositions() {
                 badPositioningCount++
           }
           if (!badPositioning) {
-            if (getDistance(sceneData.mics[i], sceneData.source) < 100) {
-              console.log('badPositioning: too close to the source');
-              badPositioning = true
-              badPositioningCount++
-            }
             for (var j = 0; j < sceneData.mics.length; j++) {
               if (i !== j) {
                 if (getDistance(sceneData.mics[i], sceneData.mics[j]) < 70) {
@@ -630,24 +630,15 @@ function saveAndCheckPositions() {
       inputs[j].disabled = true
     }
     showModal()
-    // document.getElementById('sourcePosition' + currentSourcePosition).disabled = true
-    // const elementsAdded = document.getElementsByClassName('add-element-button')
-    // for (var i = 0; i < elementsAdded.length; i++) {
-    //   elementsAdded[i].disabled = true
-    //   document.getElementsByClassName('remove-element-button')[i].disabled = true
-    // }
-    // document.getElementsByClassName('remove-element-button')[0].disabled = true
-    // document.getElementById('addMore').disabled = true
-    // document.getElementById('save').disabled = true
     disableSceneInputs()
     sceneData = []
-    currentSourcePosition ++
   } else {
     null
   }
 }
 
 function disableSceneInputs() {
+  console.log('currentSourcePosition', currentSourcePosition);
   document.getElementById('sourcePosition' + currentSourcePosition).disabled = true
   const elementsAdded = document.getElementsByClassName('add-element-button')
   for (var i = 0; i < elementsAdded.length; i++) {
@@ -660,12 +651,13 @@ function disableSceneInputs() {
 }
 
 function endAlert() {
-  confirm('¿Estás seguro que quieres terminar el caso práctico?')
+  return confirm('¿Estás seguro que quieres terminar el caso práctico?')
 }
 
 function endModal() {
-  if (passed) {
-      if (badPositioningCount < 3) {
+  console.log('PASSED', localStorage.getItem('passed'));
+  if (localStorage.getItem('passed')) {
+      if (badPositioningCount < 3 && currentSourcePosition >= 4) {
         console.log('PASSED');
         document.getElementById("endModal").style.display = "block";
         document.getElementById("endPassed").style.display = "block";
@@ -681,8 +673,8 @@ function endModal() {
   }
 }
 
-function end() {
-  if (checkedPosition) {
+function endApp() {
+  if (/*checkedPosition*/true) {
     if (endAlert()) {
       disableSceneInputs()
       endModal()

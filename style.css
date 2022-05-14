@@ -557,3 +557,11 @@ li {
 .pre-scene-button {
   top: 75vh !important;
 }
+
+.failed-end-text {
+  top: 12vh !important;
+}
+
+.passed-end-text {
+  top: 8.5vh !important;
+}

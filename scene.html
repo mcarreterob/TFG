@@ -20,7 +20,7 @@
         <button type="button" id="sourcePosition1" class="source-position-button primary-font medium-font-size" onclick="loadPositionInputs(this.id)">Posición de fuente 1</button>
       </div>
       <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button add-source-position" onclick="addNewSourcePosition()"><i class="fa fa-plus"></i></button>
-      <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button end-button" onclick="end()">Terminar</button>
+      <button type="button" id="addMoreSource" class="primary-font medium-font-size add-more-button end-button" onclick="endApp()">Terminar</button>
     </div>
     <div class="space">
       <p id="question" class="question-text">
@@ -79,14 +79,14 @@
     <div id="endModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeSceneResultsModal()">&times;</span>
-        <p id="endPassed" class="big-font-size passed-color passed-text passed-scene-text">
+        <p id="endPassed" class="big-font-size passed-color passed-text passed-scene-text passed-end-text">
           ¡Enhorabuena! Has superado la evaluación con éxito.
         </p>
-        <p id="failed1" class="big-font-size failed-color failed-text failed-scene-text">
+        <p id="failed1" class="big-font-size failed-color failed-text failed-scene-text failed-end-text">
           La teoría la tienes, pero fallas a la hora de situar los puntos en el espacio.
         </p>
-        <p id="failed2" class="big-font-size failed-color failed-text failed-scene-text">
-          Tienes que volver a leerte la norma. Parece que no lo tienes todo claro.
+        <p id="failed2" class="big-font-size failed-color failed-text failed-scene-text failed-end-text">
+          Tienes que volver a leerte la norma. Parece que no lo tienes del todo claro.
         </p>
       </div>
     </div>
