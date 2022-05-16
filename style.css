@@ -415,7 +415,6 @@ li {
   color: black;
   position: absolute;
   bottom: 4vh;
-  left: 45.7vw;
   border-radius: 0.2vw;
   background-color: #eeeeee;
   border-style: double;
@@ -555,7 +554,7 @@ li {
 }
 
 .pre-scene-button {
-  top: 75vh !important;
+  top: 80vh !important;
 }
 
 .failed-end-text {
@@ -564,4 +563,12 @@ li {
 
 .passed-end-text {
   top: 8.5vh !important;
+}
+
+.source-room-view {
+  left: 40vw;
+}
+
+.mic-room-view {
+  left: 50vw;
 }

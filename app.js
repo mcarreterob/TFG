@@ -98,12 +98,10 @@ function getRandomQuestions() {
 }
 
 function saveAnswer(answer) {
-  //console.log(answer);
   var questNumber = index + 1;
   for (var i = 0; i < answers.length; i++) {
     if (answers[i].questNumber === questNumber) {
       answers[i].answer = answer;
-      //console.log(answers);
       return answers;
     }
   }
@@ -111,7 +109,6 @@ function saveAnswer(answer) {
     questNumber: questNumber,
     answer: answer
   })
-  //console.log(answers);
   return answers;
 }
 
@@ -121,10 +118,8 @@ function selectFromProgress(questNumber) {
   index = questNumber - 1;
   document.getElementById('dynamicData').innerHTML = '';
   insertQuestion(randomQuestions, index);
-  //insertQuestion(data, index);
   insertAnswer(index);
   if (index === randomQuestions.length - 1) {
-  //if (index === data.length - 1) {
     if (end) {
       document.getElementById("next").innerHTML = 'Pasar al caso práctico <i class="fas fa-door-open"></i>';
     } else {
@@ -258,11 +253,9 @@ function btnClicked(value, id) {
 function progressDropDown() {
   if ( dropdownVisible ) {
     document.getElementById("dropdownContent").classList.remove("show");
-    //document.getElementById("dropdownContent").classList.remove("show");
     dropdownVisible = false;
   } else {
     document.getElementById("dropdownContent").classList.add("show");
-    //document.getElementById("dropdownContent").classList.add("show");
     dropdownVisible = true;
   }
   markedAsAnswered();
@@ -276,8 +269,6 @@ function markedAsAnswered() {
 }
 
 window.onclick = function(event) {
-  // console.log(event);
-  // console.log(event.srcElement);
   if (!event.target.matches('.progress-menu-container') && !event.target.matches('.fa.fa-chevron-down')) {
     var dropdowns = document.getElementsByClassName("progress-dropdown-content");
     var i;
@@ -295,12 +286,6 @@ window.onclick = function(event) {
 }
 
 function insertQuestion(data, index) {
-  // console.log(data);
-  // console.log(index);
-  // console.log(data[index]);
-  // console.log(data[index].question);
-  // console.log(numbers);
-  // console.log(numbers[index]);
   document.getElementById("question").innerHTML = index + 1 + ". ";
   //document.getElementById("question").innerHTML += data[index][index + 1].question;
   document.getElementById("question").innerHTML += data[index].question;
@@ -398,11 +383,31 @@ function getPrevious() {
 }
 
 
-function showScene() {
+function showScene(roomType) {
   if (document.getElementById("scene-modal").style.display === "block") {
-  document.getElementById("scene-modal").style.display = "none";
+    document.getElementById("scene-modal").style.display = "none";
   } else {
-  document.getElementById("scene-modal").style.display = "block";
+    if (roomType === 'SOURCE') {
+      for (var i = 0; i < scene.children.length; i++) {
+        console.log(scene.children[i]);
+        if (scene.children[i].name === 'source1') {
+          scene.children[i].visible = true
+        }
+        if (scene.children[i].name.includes('mic')) {
+          scene.children[i].visible = false
+        }
+      }
+    } else {
+      for (var i = 0; i < scene.children.length; i++) {
+        if (scene.children[i].name.includes('mic')) {
+          scene.children[i].visible = true
+        }
+        if (scene.children[i].name === 'source1') {
+          scene.children[i].visible = false
+        }
+      }
+    }
+    document.getElementById("scene-modal").style.display = "block";
   }
 }
 
@@ -439,12 +444,10 @@ function getElementPosition(name, type, sourcePosition, reload) {
       inputsData;
   if (name) {
     inputsData = document.getElementsByName(name);
-    //console.log('inputsData', inputsData);
     for (var i = 0; i < inputsData.length; i++) {
       position.push(parseInt(inputsData[i].value))
     }
   }
-  //console.log('type', type,'name', name, 'position', position);
   storeSceneData(type, name, position, sourcePosition, reload)
   addNewMesh(type, name, position);
 }
@@ -476,27 +479,17 @@ function storeSceneData(type, elementName, position, sourcePosition, reloadInput
 
 function loadPositionInputs(sourcePosition) {
   coordInputs = 2;
-  // if (sceneData[sourcePosition]) {
-  //   console.log('THERE IS INFO ABOUT ', sourcePosition, sceneData[sourcePosition]);
-  //   // console.log('cantidad de mics', sceneData[sourcePosition].mics.length);
-  //   emptyPositionInputs()
-  //   // emptyScene(sourcePosition)
-  //   getPositionInputsData(sourcePosition, true)
-  // } else {
-    emptyScene(sourcePosition)
-    console.log('THERE IS NO INFO ABOUT ', sourcePosition);
-    resetPositionInputs(sourcePosition)
-  // }
+  emptyScene(sourcePosition)
+  console.log('THERE IS NO INFO ABOUT ', sourcePosition);
+  resetPositionInputs(sourcePosition)
   console.log('loadPositionInputs sceneData', sceneData);
 }
 
 function getPositionInputsData(sourcePosition) {
-  // console.log('SP', sourcePosition);
   var sourcePositionValues = []
   if (sceneData[sourcePosition]) {
     sourcePositionValues = sceneData[sourcePosition].source
   }
-  // console.log('sourcePositionValues', sourcePositionValues);
   var tpl = '<div class="scene-inputs" id="scene-inputs"><div>Posición de la fuente</div>'
   + '<div class="source-input">'
   + '   Coordenada X <input type="number" id="source1" value="' + sourcePositionValues[0] + '" name="source1" class="primary-font medium-font-size coords" min="-300" max="300" value="0" onkeyup="enforceMinMax(this)">'
@@ -509,12 +502,10 @@ function getPositionInputsData(sourcePosition) {
   + '<button type="button" id="save" class="primary-font medium-font-size add-more-button save-button" onclick="saveAndCheckPositions()"><i class="far fa-save"></i></button>'
   document.getElementById('scene-inputs-container').insertAdjacentHTML('afterbegin', tpl)
   var micsLength = sceneData[sourcePosition].mics.length
-  //console.log('sourcePosition', sceneData[sourcePosition], 'micsLength', micsLength);
   for (var i = 0; i < micsLength; i++) {
-    addNewElement(sceneData[sourcePosition].mics[i], sourcePosition) // CREO QUE AÑADE COSAS QUE NO DEBE, REVISAR
+    addNewElement(sceneData[sourcePosition].mics[i], sourcePosition)
     getElementPosition('mic' + (i + 1), 'MIC', sourcePosition)
   }
-  //console.log('el que acabo de ponerrrrrrr', sceneData[sourcePosition].mics);
   getElementPosition('source1', 'SOURCE', sourcePosition)
 }
 
@@ -547,7 +538,6 @@ function resetPositionInputs(sourcePosition) {
 }
 
 function addNewSourcePosition() {
-  //console.log('addNewSourcePosition log');
   console.log('PASSED', localStorage.getItem('passed'));
   if (checkedPosition) {
     checkedPosition = false
@@ -674,7 +664,7 @@ function endModal() {
 }
 
 function endApp() {
-  if (/*checkedPosition*/true) {
+  if (checkedPosition) {
     if (endAlert()) {
       disableSceneInputs()
       endModal()

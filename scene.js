@@ -14,11 +14,10 @@ const PLANE_WIDTH = FIELD_WIDTH,
       PLANE_HEIGHT = FIELD_HEIGHT,
       PLANE_QUALITY = 10;
 
-// Paddles
-const PADDLE_WIDTH = 10,
-      PADDLE_HEIGTH = 30,
-      PADDLE_DEPTH = 10,
-      PADDLE_QUALITY = 1;
+const SOURCE_WIDTH = 10,
+      SOURCE_HEIGTH = 30,
+      SOURCE_DEPTH = 10,
+      SOURCE_QUALITY = 1;
 
 const RADIUS = 6,
       SEGMENTS = 32,
@@ -105,10 +104,10 @@ function addMesh() {
         color: 0x0000FF
       });
     source_geometry = new THREE.CubeGeometry(
-      PADDLE_WIDTH,
-      PADDLE_HEIGTH,
-      PADDLE_DEPTH,
-      PADDLE_QUALITY);
+      SOURCE_WIDTH,
+      SOURCE_HEIGTH,
+      SOURCE_DEPTH,
+      SOURCE_QUALITY);
     source_material = new THREE.MeshBasicMaterial(
       {
         color: 0xFF0000
