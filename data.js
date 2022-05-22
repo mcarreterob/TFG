@@ -1,4 +1,4 @@
-var data = [
+const data = [
   {
     "1": {
       "question": "La máquina de impactos se puede utilizar para una variedad de impactos leves o fuertes,"
@@ -309,7 +309,7 @@ var data = [
     }
   }
   ];
-var binary = [
+const binary = [
   {
     //"1": {
       "question": "La máquina de impactos se puede utilizar para una variedad de impactos leves o fuertes,"
@@ -464,7 +464,7 @@ var binary = [
     //}
   }
 ]
-var open = [
+const open = [
   {
     //"2": {
       "question": "Según la norma, el tiempo de reverberación es el tiempo requerido por el nivel de presión"
@@ -487,7 +487,7 @@ var open = [
     //}
   }
 ]
-var multi = [
+const multi = [
   {
     //"5": {
       "question": "Las mediciones que deben hacerse incluyen:",
@@ -526,7 +526,7 @@ var multi = [
     //}
   }
 ]
-var multiButtons = [
+const multiButtons = [
   {
     //"13": {
       "question": "¿Qué figura representa la trayectoria helicoidal?",
@@ -554,7 +554,7 @@ var multiButtons = [
     //}
   }
 ]
-var number = [
+const number = [
   {
     //"16": {
       "question": "¿Cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
