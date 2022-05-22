@@ -35,9 +35,7 @@ function getRandomInt(min, max) {
 }
 
 function getRandomQuestions() {
-  // var numbers = []
   var maxRetries = 6
-  // BINARY
   for (var i = 0; i < 6; i++) {
     var randInt = getRandomInt(0, 11)
     if (numbers.findIndex(number => number === randInt) !== -1) {
@@ -51,7 +49,6 @@ function getRandomQuestions() {
     numbers.push(randInt)
     randomQuestions.push(binary[randInt])
   }
-  // OPEN
   for (var i = 0; i < 1; i++) {
     var randInt = getRandomInt(0, 1)
     if (numbers.findIndex(number => number === randInt) !== -1) {
@@ -65,7 +62,6 @@ function getRandomQuestions() {
     numbers.push(randInt)
     randomQuestions.push(open[randInt])
   }
-  // MULTI
   for (var i = 0; i < 1; i++) {
     var randInt = getRandomInt(0, 1)
     if (numbers.findIndex(number => number === randInt) !== -1) {
@@ -79,7 +75,6 @@ function getRandomQuestions() {
     numbers.push(randInt)
     randomQuestions.push(multi[randInt])
   }
-  // MULTI_BUTTONS
   for (var i = 0; i < 1; i++) {
     var randInt = getRandomInt(0, 1)
     if (numbers.findIndex(number => number === randInt) !== -1) {
@@ -131,8 +126,7 @@ function selectFromProgress(questNumber) {
 }
 
 function insertAnswer(index) {
-  var type = randomQuestions[index]/*[index + 1]*/.answerType,
-  //var type = data[index]/*[index + 1]*/.answerType,
+  var type = randomQuestions[index].answerType,
       elementLocation = document.getElementById("dynamicData"),
       answer,
       numberAnswers,
@@ -149,8 +143,7 @@ function insertAnswer(index) {
   }
   switch (type) {
     case "OPEN":
-      //units = data[index]/*[index + 1]*/.units;
-      units = randomQuestions[index]/*[index + 1]*/.units;
+      units = randomQuestions[index].units;
       answer = '<p class="top"><input type="text" id="answerInput" name="selected" class="input-box primary-font medium-font-size" '
                 + 'onKeypress="if(event.keyCode == 13) event.returnValue = false" onKeyup="saveAnswer(this.value)" ' + elementDisabled
                 + '> ' + units + '</p>';
@@ -169,11 +162,10 @@ function insertAnswer(index) {
       }
       break;
     case "MULTI":
-      numberAnswers = randomQuestions[index]/*[index + 1]*/.numberAnswers;
-      numberAnswers = randomQuestions[index]/*[index + 1]*/.numberAnswers;
+      numberAnswers = randomQuestions[index].numberAnswers;
+      numberAnswers = randomQuestions[index].numberAnswers;
       for (var i = 0; i < numberAnswers; i++) {
-        possAnswer = randomQuestions[index]/*[index + 1]*/.possibleAnswers[i];
-        //possAnswer = data[index]/*[index + 1]*/.possibleAnswers[i];
+        possAnswer = randomQuestions[index].possibleAnswers[i];
         answer = '<p><input type="radio" name="selected" id=possibleAnswer' + i + ' value=possibleAnswer'
                   + i + ' onchange="saveAnswer(this.value)" ' + elementDisabled + '>  ' + possAnswer + '</p>';
         elementLocation.insertAdjacentHTML('beforeend', answer);
@@ -187,12 +179,9 @@ function insertAnswer(index) {
     case "MULTI_BUTTONS":
         attachments = [];
         answer = '';
-        //if ( data[index]/*[index + 1]*/.attachments.length ) {
-        if ( randomQuestions[index]/*[index + 1]*/.attachments.length ) {
-          for (var i = 0; i < randomQuestions[index]/*[index + 1]*/.attachments.length; i++) {
-          //for (var i = 0; i < data[index]/*[index + 1]*/.attachments.length; i++) {
-            attachments.push(randomQuestions[index]/*[index + 1]*/.attachments[i]);
-          //  attachments.push(data[index]/*[index + 1]*/.attachments[i]);
+        if ( randomQuestions[index].attachments.length ) {
+          for (var i = 0; i < randomQuestions[index].attachments.length; i++) {
+            attachments.push(randomQuestions[index].attachments[i]);
             btnId = 'multiBtn' + i;
             answer += '<button type="button" id="' + btnId + '" class="multi-button answer_btn big-font-size primary-font left transition-button"'
                       + ' onclick="btnClicked(id, id)" ' + elementDisabled + '>'
@@ -205,8 +194,7 @@ function insertAnswer(index) {
         }
       break;
     case "OPEN_LONG":
-      //units = data[index]/*[index + 1]*/.units;
-      units = randomQuestions[index]/*[index + 1]*/.units;
+      units = randomQuestions[index].units;
       answer = '<p><input type="text" name="selected" style="font-size:1.2vw;width:30vw" ' + elementDisabled + '> ' + units + '</p>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer) {
@@ -214,19 +202,14 @@ function insertAnswer(index) {
       }
       break;
     case "BINARY":
-      a1 = randomQuestions[index]/*[index + 1]*/.possibleAnswers[0];
-      //a1 = data[index]/*[index + 1]*/.possibleAnswers[0];
-      a2 = randomQuestions[index]/*[index + 1]*/.possibleAnswers[1];
-      //a2 = data[index]/*[index + 1]*/.possibleAnswers[1];
+      a1 = randomQuestions[index].possibleAnswers[0];
+      a2 = randomQuestions[index].possibleAnswers[1];
       style = randomQuestions[index].move ? 'style="top:35vh"' : null;
-      //style = data[index][index + 1].move ? 'style="top:35vh"' : null;
       answer = '<button ' + style + ' type="button" id="btn1" class="answer_btn big-font-size primary-font transition-button"'
-                //+ ' onclick="btnClicked(data[index][index + 1].possibleAnswers[0], id)" ' + elementDisabled + '>'
                 + ' onclick="btnClicked(randomQuestions[index].possibleAnswers[0], id)" ' + elementDisabled + '>'
                 + a1 + '</button>'
                 + '<button ' + style + ' type="button" id="btn2" class="answer_btn big-font-size primary-font transition-button"'
                 + ' onclick="btnClicked(randomQuestions[index].possibleAnswers[1], id)" ' + elementDisabled + '>'
-                //+ ' onclick="btnClicked(data[index][index + 1].possibleAnswers[1], id)" ' + elementDisabled + '>'
                 + a2 + '</button>';
       elementLocation.insertAdjacentHTML('beforeend', answer);
       if (markedAnswer && markedAnswer === a1) {
@@ -287,7 +270,6 @@ window.onclick = function(event) {
 
 function insertQuestion(data, index) {
   document.getElementById("question").innerHTML = index + 1 + ". ";
-  //document.getElementById("question").innerHTML += data[index][index + 1].question;
   document.getElementById("question").innerHTML += data[index].question;
 }
 
@@ -297,15 +279,12 @@ function showAlert() {
 
 function getNext(){
   if(index < randomQuestions.length - 1) {
-  //if(index < data.length - 1) {
     document.getElementById('dynamicData').innerHTML = '';
     index ++;
     if (index === randomQuestions.length - 1) {
-    //if (index === data.length - 1) {
       document.getElementById("next").innerHTML = 'Terminar y evaluar respuestas';
     }
     insertQuestion(randomQuestions, index);
-    //insertQuestion(data, index);
     insertAnswer(index);
   } else if (!end) {
     finish = showAlert() ? checkAnswers() : null;
@@ -316,11 +295,9 @@ function getNext(){
 
 function checkAnswers() {
   var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(randomQuestions.length * 0.8);
-  //var i = j = 0, questNumber, rightAnswers = [], limit = Math.round(data.length * 0.8);
   for (i; i < answers.length; i++) {
     questNumber = answers[i].questNumber;
     if (answers[i].answer === randomQuestions[questNumber - 1].correctAnswer) {
-    //if (answers[i].answer === data[questNumber - 1][questNumber].correctAnswer) {
       rightAnswers.push({
         questNumber: answers[i].questNumber,
         isRight: true
@@ -339,9 +316,7 @@ function checkAnswers() {
 
 function generateModalContent(rightAnswers) {
   limit = Math.round(randomQuestions.length * 0.1);
-  //var passed = false, limit = Math.round(data.length * 0.8);
   document.getElementById("modalResult").innerText= rightAnswers.length + '/' + randomQuestions.length;
-  //document.getElementById("modalResult").innerText= rightAnswers.length + '/' + data.length;
   passed = rightAnswers.length < limit ? false : true;
   localStorage.setItem('passed', true)
   console.log('PASSED', passed);
@@ -374,7 +349,6 @@ function getPrevious() {
     document.getElementById('dynamicData').innerHTML = '';
     index --;
     insertQuestion(randomQuestions, index);
-    //insertQuestion(data, index);
     insertAnswer(index);
   }
   if (document.getElementsByTagName('I')[2].className === "fas fa-door-open") {
