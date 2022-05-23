@@ -281,8 +281,12 @@ function getNext(){
   if(index < randomQuestions.length - 1) {
     document.getElementById('dynamicData').innerHTML = '';
     index ++;
-    if (index === randomQuestions.length - 1) {
-      document.getElementById("next").innerHTML = 'Terminar y evaluar respuestas';
+    if (index === randomQuestions.length - 1 ) {
+      if (end) {
+        document.getElementById("next").innerHTML = 'Pasar al caso práctico <i class="fas fa-door-open"></i>';
+      } else {
+        document.getElementById("next").innerHTML = 'Terminar y evaluar respuestas';
+      }
     }
     insertQuestion(randomQuestions, index);
     insertAnswer(index);
