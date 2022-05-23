@@ -118,7 +118,7 @@ function selectFromProgress(questNumber) {
     if (end) {
       document.getElementById("next").innerHTML = 'Pasar al caso práctico <i class="fas fa-door-open"></i>';
     } else {
-      document.getElementById("next").innerHTML = 'Terminar y salir <i class="fas fa-door-open"></i>';
+      document.getElementById("next").innerHTML = 'Terminar y evaluar respuestas';
     }
   } else {
     document.getElementById("next").innerHTML = '<i class="fa fa-chevron-right">';
