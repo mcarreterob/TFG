@@ -557,7 +557,8 @@ const multiButtons = [
 const number = [
   {
     //"16": {
-      "question": "¿Cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
+      "question": "Hablando del procedimiento de baja frecuencia para la medición del nivel de presión acústica,"
+                  + " ¿cuál es el número mínimo de esquinas en las que se deben hacer mediciones utilizando un micrófono fijo "
                   + "o de mano para cada posición de la fuente de impactos?",
       "answerType": "NUMBER",
       "units": "",
