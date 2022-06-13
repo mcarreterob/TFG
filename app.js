@@ -319,7 +319,7 @@ function checkAnswers() {
 }
 
 function generateModalContent(rightAnswers) {
-  limit = Math.round(randomQuestions.length * 0.1);
+  limit = Math.round(randomQuestions.length * 0.8);
   document.getElementById("modalResult").innerText= rightAnswers.length + '/' + randomQuestions.length;
   passed = rightAnswers.length < limit ? false : true;
   localStorage.setItem('passed', true)
@@ -625,7 +625,7 @@ function endAlert() {
 function endModal() {
   console.log('PASSED', localStorage.getItem('passed'));
   if (localStorage.getItem('passed')) {
-      if (badPositioningCount < 3 && currentSourcePosition >= 4) {
+      if (badPositioningCount <= 3 && currentSourcePosition >= 4) {
         console.log('PASSED');
         document.getElementById("endModal").style.display = "block";
         document.getElementById("endPassed").style.display = "block";
